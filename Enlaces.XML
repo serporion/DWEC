@@ -1,0 +1,38 @@
+<temas>
+    <tema_principal titulo="Tema 1. Introducción JavaScript">
+        <titulo_secundario titulo="Tutorial Hostinger">
+        	<url>https://www.hostinger.es/tutoriales/que-es-javascript-introduccion-basica/</url>
+		</titulo_secundario>
+		<titulo_secundario titulo="Guías JavaScript">
+			<url>https://developer.mozilla.org/en-US/docs/Web/JavaScript</url>
+			<url>https://www.w3schools.com/jsref/jsref_reduce.asp</url>
+		</titulo_secundario>
+		<titulo_secundario titulo="Historia JavasScript">
+				<url>https://codeburst.io/javascript-wtf-is-es6-es8-es-2017-ecmascript-dca859e4821c</url>
+		</titulo_secundario>
+		<titulo_secundario titulo="Buenas práctica JavaScript">
+				<url>https://github.com/rwaldron/idiomatic.js/tree/master/translations/es_ES</url>
+				<url>https://github.com/airbnb/javascript?tab=readme-ov-file</url>
+		</titulo_secundario>
+		<titulo_secundario titulo="Spread-Operator">
+				<url>https://github.com/jpineroberbel/web-curriculum/tree/master/lessons/es6/spread-operator</url>	
+		</titulo_secundario>
+    </tema_principal>
+	
+	
+	
+	https://github.com/react-bootstrap/code-sandbox-examples/blob/master/README.md
+	https://react-bootstrap.github.io/
+	
+	
+	
+	
+	Estrategias de aplicaciones web reutilizables: tres patrones para ejecutar la misma aplicación en múltiples ubicaciones
+	https://www.freecodecamp.org/news/reusable-web-application-strategies-d51517ea68c8/
+	
+	Objetos
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects
+	
+	
+	
+</temas>

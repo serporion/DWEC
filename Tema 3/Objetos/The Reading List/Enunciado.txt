@@ -1,0 +1,31 @@
+
+Crea una clase llamada BookList
+
+Crea otra clase llamada Book
+
+Las clases BookList deben tener las siguientes propiedades:
+
+Número de libros marcados como leídos.
+Número de libros marcados como no leídos aún.
+Una referencia al siguiente libro que se va a leer (objeto libro).
+Una referencia al libro actual que se está leyendo (objeto libro).
+Una referencia al último libro leído (objeto libro).
+Un array con todos los libros.
+Cada Book (Libro) debe tener varias propiedades:
+
+Título.
+Género.
+Autor.
+Leído (verdadero o falso).
+Fecha de lectura (puede estar en blanco, pero si no lo está, debe ser un objeto Date() de JavaScript).
+
+Cada BookList debe tener algunos métodos:
+
+.add(libro)
+ Debe agregar un libro a la lista de libros.
+.finishCurrentBook()
+ Debe marcar el libro que se está leyendo actualmente como "leído".
+ Asignarle la fecha de lectura con new Date(Date.now()).
+ Cambiar la referencia del último libro leído al libro que acaba de ser finalizado.
+ Cambiar el libro actual al siguiente libro que se va a leer.
+ Cambiar la referencia del siguiente libro a leer por el primer libro no leído que se encuentre en la lista.
