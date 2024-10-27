@@ -7,7 +7,7 @@ function verPosicion(e) {
     
   
 
-//document.body.addEventListener("mousemove", verPosicion); 
+
 
  
 */

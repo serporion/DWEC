@@ -21,17 +21,10 @@ function saltarAlertas() {
 }
 
 
+
 /*
 
-const btn = document.getElementById("btn");
-
-
-btn.addEventListener("click", () => {
-  const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
-  document.body.style.backgroundColor = rndCol;
-});
-
-
+Comentado, es otro ejemplo. No está creado el btn1
 
 const btn1 = document.getElementById("btn1")
 
@@ -40,11 +33,15 @@ btn1.addEventListener("click", () => console.log("Hello World"));
 */
 
 
+
 const btn2 = document.getElementsByTagName("button");
 
 console.log(btn2.length);
 
-btn2[0].addEventListener("click", () => console.log("Hello World"));
+btn2[0].addEventListener("click", () => {
+  const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+  document.body.style.backgroundColor = rndCol;
+});
 
 btn2[1].addEventListener("mouseover", cambiarColor);
 btn2[1].addEventListener("mouseout", ()=>document.body.style.backgroundColor = "blue");

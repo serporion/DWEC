@@ -5,7 +5,7 @@
 
 window.onload = () => {
 
-    //LA FUNCION DE ARRIBA PINTA UNA TABLA
+    //ESTA FUNCION PINTA UNA TABLA
 
     const tabla = document.createElement('table');
 
@@ -33,12 +33,21 @@ window.onload = () => {
     const tds = document.querySelectorAll('td');
 
     console.log(tds.length);
-
     
     tds.forEach(td => {
-        td.addEventListener('mouseover', cambiarColor);
+        td.addEventListener('mouseover', (evento) => cambiarColor(evento));
     });
 
+    const but = document.querySelector('button[name="borrar"]');
+
+    but.addEventListener('click', ()=> borrar(tds));
+
+
+}
+
+
+function borrar (tds){
+    tds.forEach(td => td.style.backgroundColor= 'white');
 }
 
 
