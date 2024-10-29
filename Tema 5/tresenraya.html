@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tres en Raya</title>
+    <script src="tresenraya.js"></script>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin: 20px 0;
+        }
+
+        #comentario, #ganador{
+            color: white;
+        }
+
+        .tablero {
+            width: 550px;
+            margin: 0 auto;
+        }
+
+        .contenedor {
+            width: 150px;
+            height: 150px;
+            background-color: antiquewhite;
+            border: 5px solid black;
+            display: inline-block;
+            font-size: 70px;
+            line-height: 150px;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            /* Evita que el texto sobresalga */
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Tres en Raya</h1>
+    <section class="tablero">
+        <div class="contenedor" id="1"></div>
+        <div class="contenedor" id="2"></div>
+        <div class="contenedor" id="3"></div>
+        <div class="contenedor" id="4"></div>
+        <div class="contenedor" id="5"></div>
+        <div class="contenedor" id="6"></div>
+        <div class="contenedor" id="7"></div>
+        <div class="contenedor" id="8"></div>
+        <div class="contenedor" id="9"></div>
+    </section>
+    <p id="comentario">JUEGO EN CURSO</p>
+    <p id="ganador"></p>
+
+</body>
+
+</html>
