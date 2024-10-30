@@ -18,8 +18,20 @@
             margin: 20px 0;
         }
 
-        #comentario, #ganador{
+        #comentario,
+        #ganador {
             color: white;
+        }
+
+        #reiniciar {
+            margin-top: 20px;
+            height: 30px;
+            width: 150px;
+            font-weight: bold;
+            background-color: black;
+            border: 1px solid white;
+            color: white;
+            cursor: pointer;
         }
 
         .tablero {
@@ -38,9 +50,18 @@
             text-align: center;
             cursor: pointer;
             overflow: hidden;
-            /* Evita que el texto sobresalga */
-
         }
+
+        
+        .casilla {
+            transition: transform 1.5s ease;
+            transform: scale(1.2) rotate(360deg);
+            background-color: red;
+            color: white;
+        }
+            
+
+
     </style>
 </head>
 
@@ -60,6 +81,8 @@
     </section>
     <p id="comentario">JUEGO EN CURSO</p>
     <p id="ganador"></p>
+    <button id="reiniciar">Reiniciar Partida</button>
+
 
 </body>
 

@@ -1,6 +1,6 @@
 window.onload = () => {
 
-    let casilla = document.querySelectorAll('div');
+    let casillas = document.querySelectorAll('div');
 
     let turno = {
         paso: 2
@@ -10,55 +10,36 @@ window.onload = () => {
         vuelta: 1
     };
 
-
-
     let combinacionesTurnoX = [];
     let combinacionesTurnoO = [];
 
-
-    casilla.forEach(cas => { cas.addEventListener('click', evento => localizaCasilla(evento, turno.paso++, contador.vuelta++, combinacionesTurnoX, combinacionesTurnoO)); });
+    casillas.forEach(cas => { cas.addEventListener('click', evento => localizacasillas(evento, turno, contador, combinacionesTurnoX, combinacionesTurnoO)); });
 
     console.log(turno);
+
+    document.getElementById('reiniciar').addEventListener('click', () => reiniciarPartida( turno, contador, combinacionesTurnoX, combinacionesTurnoO));
 
 }
 
 
-function localizaCasilla(evento, turno, contador, combinacionesTurnoX, combinacionesTurnoO) {
+function localizacasillas(evento, turno, contador, combinacionesTurnoX, combinacionesTurnoO) {
     console.log("En turno entra" + turno);
 
-    let ganador;
-
-
-    if (evento.target.innerText == '') {
-
-
-
-        if (turno % 2 == 0) {
-            document.getElementById(evento.target.id).innerText = 'X';
+    if (evento.target.innerText === '') {
+        if (turno.paso % 2 === 0) {
+            evento.target.innerText = 'X';
             combinacionesTurnoX.push(evento.target.id);
-
-            if (comprobar(combinacionesTurnoX, "X")) {
-                contador = 9;
-            }
-
-
-
+            if (comprobar(combinacionesTurnoX, "X")) contador.vuelta = 9;
         } else {
-            document.getElementById(evento.target.id).innerText = 'O';
+            evento.target.innerText = 'O';
             combinacionesTurnoO.push(evento.target.id);
-
-            if (comprobar(combinacionesTurnoO, "O")) {
-                contador = 9;
-            }
+            if (comprobar(combinacionesTurnoO, "O")) contador.vuelta = 9;
         }
-
+        turno.paso++;
+        contador.vuelta++;
     } else {
-        alert('casilla ocupada');
-        contador--;
-        turno--;
+        alert('Casilla ocupada');
     }
-
-
 
     if (contador >= 9) {
 
@@ -67,7 +48,6 @@ function localizaCasilla(evento, turno, contador, combinacionesTurnoX, combinaci
         if (ganador == "") {
             document.getElementById('ganador').innerText = "El juego acabó en tablas.";
         }
-
 
     }
 
@@ -86,12 +66,52 @@ function comprobar(movimientos, jugador) {
         ['3', '5', '7']
     ];
 
-
+    /*
     if (combinaciones.some(combinacion =>
         combinacion.every(elemento => movimientos.includes(elemento)))) {
         document.getElementById('ganador').innerText = "El ganador es " + jugador;
         document.getElementById('comentario').innerText = 'JUEGO TERMINADO';
     }
+    */
 
+    let combinacionGanadora = combinaciones.find(combinacion =>
+        combinacion.every(elemento => movimientos.includes(elemento))
+    );
+
+    if (combinacionGanadora) {
+        combinacionGanadora.forEach(casilla => {
+            const elemento = document.getElementById(casilla);
+            elemento.classList.add('casilla');
+            
+            // Volver a su tamaño original después de 5 segundos
+            setTimeout(() => {
+                elemento.classList.remove('casilla');
+            }, 5000);
+        });
+
+        document.getElementById('ganador').innerText = "El ganador es " + jugador;
+        document.getElementById('comentario').innerText = 'JUEGO TERMINADO';
+    }
+
+}
+
+function reiniciarPartida(turno, contador, combinacionesTurnoX, combinacionesTurnoO) {
+    
+    let casillas = document.querySelectorAll('div');
+
+    casillas.forEach(cas => {
+        cas.innerText = ''; 
+        cas.classList.remove('casilla'); 
+    });
+
+    
+    combinacionesTurnoX.length = 0;
+    combinacionesTurnoO.length = 0;
+    turno.paso = 2;
+    contador.vuelta = 1;
+
+    
+    document.getElementById('comentario').innerText = "";
+    document.getElementById('ganador').innerText = "";
 }
 
