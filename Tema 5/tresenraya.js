@@ -13,7 +13,7 @@ window.onload = () => {
     let combinacionesTurnoX = [];
     let combinacionesTurnoO = [];
 
-    casillas.forEach(cas => { cas.addEventListener('click', evento => localizacasillas(evento, turno, contador, combinacionesTurnoX, combinacionesTurnoO)); });
+    casillas.forEach(cas =>  cas.addEventListener('click', evento => localizacasillas(evento, turno, contador, combinacionesTurnoX, combinacionesTurnoO)));
 
     console.log(turno);
 
@@ -66,6 +66,8 @@ function comprobar(movimientos, jugador) {
         ['3', '5', '7']
     ];
 
+
+    //VER ESTA FORMA, diferencias entre some y every con find.
     /*
     if (combinaciones.some(combinacion =>
         combinacion.every(elemento => movimientos.includes(elemento)))) {
@@ -74,19 +76,23 @@ function comprobar(movimientos, jugador) {
     }
     */
 
+
     let combinacionGanadora = combinaciones.find(combinacion =>
         combinacion.every(elemento => movimientos.includes(elemento))
     );
 
-    if (combinacionGanadora) {
-        combinacionGanadora.forEach(casilla => {
-            const elemento = document.getElementById(casilla);
-            elemento.classList.add('casilla');
+    if (combinacionGanadora) { 
             
-            // Volver a su tamaño original después de 5 segundos
+            combinacionGanadora.forEach(casilla => { 
+                
+            const casillaGana = document.getElementById(casilla);
+
+            casillaGana.classList.add('casilla');
+                        
             setTimeout(() => {
-                elemento.classList.remove('casilla');
-            }, 5000);
+                casillaGana.classList.remove('casilla');
+            }, 3000);
+
         });
 
         document.getElementById('ganador').innerText = "El ganador es " + jugador;

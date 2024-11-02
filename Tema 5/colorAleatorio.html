@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Color</title>
+
+    <style>
+        body {
+            margin: 0 auto;
+            background-color: black;
+            width: 25%;
+            height: 700px;
+        }
+
+        #cabecera {
+            background-color: rgb(21, 129, 70);
+            width: 100%;
+            height: 150px;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        #divs {
+            text-align: center;            
+            border-radius: 20px;
+        }
+
+        #menu {
+            position: relative;
+            background-color: rgb(37, 201, 119);
+            color: white;
+            height: 30px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        div {
+            position: relative;
+            background-color: white;
+            width: 120px;
+            height: 120px;
+            border: 1px solid black;
+            display: inline-block;
+            margin: 10px;
+            top: 60px;
+            text-align: center;
+            line-height: 100px;
+            border-color: azure;
+            border-radius: 20px;
+            cursor: pointer;
+
+        }
+
+        h1 {
+            font-size: 40px;
+            color: azure;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        p {
+            font-size: 15px;
+            color: azure;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            margin-bottom: 10px;            
+        }
+
+        td {
+            border-radius: 20px;
+        }
+
+        #Color {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        
+
+        #titulo {
+            font-size: 60px;
+        }
+
+        #nuevoColor {
+            background-color: rgb(37, 201, 119);
+            margin-top: 10px;            
+        }
+
+        #nuevoColor {
+            position: relative;
+            margin-left: 1px;
+        }
+
+        #facil, #dificil{
+            text-align: center;
+        }
+
+        .menu {
+            cursor: pointer;
+            text-align: left;
+           
+        }
+
+        /*
+        @keyframes moverEnCirculo {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-200px);
+            }
+
+            50% {
+                transform: translate(-200px, 200px);
+            }
+
+            75% {
+                transform: translate(0, 200px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+
+        }
+        
+
+        .moverCuadrado {
+            animation: moverEnCirculo 4s ease-in-out forwards;
+        }
+
+        */
+
+        .casilla {
+            transition: transform 5s ease;
+            transform: scale(1.4);
+        }
+
+        .resize {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+
+        }
+
+        
+        @keyframes caerAbajo {
+            0% {
+                transform: translateX(0);
+            }
+
+           
+
+            100% {
+                transform: translateY(800px);
+            }
+        }
+
+        .moverPerdedores {
+            animation: caerAbajo 4s ease-in-out forwards;
+        }
+
+    </style>
+
+    <script src="colorAleatorio.js"></script>
+
+</head>
+
+<body>
+
+    <section id="cabecera">
+        <p>THE GREAT</p>
+        <p id="Color">RGB</p>
+        <p id="comentario">Adivina el Color</p>
+        <aside id="menu">
+            <table class="menu">
+                <tr>
+                    <td colspan="3" id="nuevoColor">New Colors</td>
+                    <td></td>
+                    <td></td>
+                    <td id="facil">Easy</label></td>
+                    <td id="dificil">Hard</label></td>
+                </tr>
+            </table>
+
+        </aside>
+    </section>
+    <section id="divs">
+
+        <div id="1"></div>
+        <div id="2"></div>
+        <div id="3"></div>
+        <div id="4"></div>
+        <div id="5"></div>
+        <div id="6"></div>
+
+
+    </section>
+
+</body>
+
+</html>
