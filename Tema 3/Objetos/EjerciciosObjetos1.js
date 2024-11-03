@@ -24,13 +24,15 @@ class Persona {
     }
     
     comer(comida){
-        if (this.#estomago.length == 2){
+        if (this.#estomago.length == 10){
             console.log("Tiene que cagar. Te vacío el estómago");
             this.cagar();
 
         }else{
             this.#estomago.push(comida);
         }
+
+        this.#estomago.forEach(element => console.log(element));
     }
 
     cagar(){
@@ -52,17 +54,12 @@ let per1 = new Persona('María','30');
 
 per1.comer("Pollo");
 per1.comer("Arroz");
-
-
-
 per1.comer("Leche");
 
 arrayPersona.push(per1);
 
 
-
-
-console.log(per1.toString())
+console.log(arrayPersona[0].toString())
 
 //document.write(per1.toString());
 document.write(per1);

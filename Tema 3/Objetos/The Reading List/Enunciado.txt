@@ -25,6 +25,7 @@ Cada BookList debe tener algunos métodos:
  Debe agregar un libro a la lista de libros.
 .finishCurrentBook()
  Debe marcar el libro que se está leyendo actualmente como "leído".
+ 
  Asignarle la fecha de lectura con new Date(Date.now()).
  Cambiar la referencia del último libro leído al libro que acaba de ser finalizado.
  Cambiar el libro actual al siguiente libro que se va a leer.
