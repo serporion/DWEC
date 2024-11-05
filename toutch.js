@@ -1,7 +1,7 @@
 
 window.onload = () =>{
 
-    let pulsados = document.querySelector("body");
+    let pulsados = document.querySelector("section");
 
     //pulsados.addEventListener('click', (e) => console.log("se ha pulsado " + e.target.id ))
 
