@@ -91,12 +91,13 @@ window.onload = () => {
 
         let touches = evt.changedTouches;
 
-        if (evt.targetTouches.length == 1) {
+        if (evt.targetTouches.length > 0) {
 
+            let touch = touches[0];
 
-            for (let i = 0; i < touches.length; i++) {
+            //for (let i = 0; i < touches.length; i++) {
 
-                let touch = touches[i];
+            //    let touch = touches[i];
 
                 let x = touch.pageX;
                 let y = touch.pageY;
@@ -110,7 +111,7 @@ window.onload = () => {
                     input.value = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`).join(" -> ");
                 }
 
-            }
+            //}
         }
     }
 
@@ -126,6 +127,7 @@ window.onload = () => {
             evt.target.style.outline = "1px solid black";
             document.body.style.backgroundColor = "white";
             document.getElementById("info").innerHTML = "Toca la pantalla con uno, dos o tres dedos.";
+            document.getElementById("puntos").value = "";
             document.getElementById("parrafo").style.backgroundColor = "white";
         }
 
