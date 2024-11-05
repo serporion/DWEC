@@ -1,5 +1,5 @@
 
-window.onload = () => {
+
 
 
     class tablero {
@@ -137,6 +137,11 @@ window.onload = () => {
         */
 
     }
+
+
+
+window.onload = () => {
+    
     let tablero1 = new tablero(4, 4);
 
     tablero1.crearTablero();

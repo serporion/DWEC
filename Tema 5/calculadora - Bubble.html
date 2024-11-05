@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULADORA</title>
+    <script src="calculadora - Bubble.js"></script>
+
+    <style type="text/css">
+        body {
+            background-color: #0d0d0e;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #f1ebeb;
+            margin-bottom: 20px;
+        }
+
+        table {
+            margin: 0 auto;
+            
+            width: 350px;
+            height: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        td {
+            border: 1px solid #0c0c0c;
+            border-radius: 15px;
+            padding: 20px;
+            background-color: #e7f3fe;
+            font-size: 24px;
+            cursor: pointer;
+        
+        }
+
+        td:hover {
+            background-color: #d0e7ff;
+        }
+
+        #caja{
+            /*background-color: tomato;*/
+            overflow: hidden;
+            width: 500px;
+            height: 50px;
+        }
+
+        #C{
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="titH1">Dame el primer número</h1>
+    <table id="tabla" boder="1">
+        <tr><td id="caja" colspan="4"></td></td></tr>
+        <tr>
+            <td id="-">-</td>
+            <td id="x">x</td>
+            <td id="/">/</td>
+            <td id="+">+</td>
+        </tr>
+        <tr>
+            <td id="7">7</td>
+            <td id="8">8</td>
+            <td id="9">9</td>
+            <td id="="rowspan="4">=</td>
+
+        </tr>
+        <tr>
+            <td id="4">4</td>
+            <td id="5">5</td>
+            <td id="6">6</td>
+
+        </tr>
+        <tr>
+            <td id="1">1</td>
+            <td id="2">2</td>
+            <td id="3">3</td>
+
+        </tr>
+        <tr>
+            <td id="0">0</td>
+            <td id=".">.</td>
+            <td id="C">C</td>
+
+        </tr>
+    </table>
+
+
+</body>
+
+</html>
