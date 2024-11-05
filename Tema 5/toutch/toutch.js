@@ -17,6 +17,51 @@ window.onload = () => {
     pulsados.addEventListener("touchend", handleEnd, false);
 
 
+    pulsados.addEventListener("touchstart", (e) => {
+
+        switch (e.touches.length) {
+            case 1:
+                handle_one_touch(e);
+                break;
+            case 2:
+                handle_two_touches(e);
+                break;
+            case 3:
+                handle_three_touches(e);
+                break;
+            default:
+                console.log("Not supported");
+                break;
+        }
+    },
+
+        false,
+    );
+
+
+
+    function handle_one_touch(e) {
+        //console.log("Un solo toque detectado.");
+        document.body.style.backgroundColor = "lightblue"; // Cambiar el fondo a azul claro
+        document.getElementById("info").innerHTML = "Tocaste con un solo dedo!";
+    }
+
+    // Función que maneja dos toques
+    function handle_two_touches(e) {
+        //console.log("Dos toques detectados.");
+        document.body.style.backgroundColor = "lightgreen"; // Cambiar el fondo a verde claro
+        document.getElementById("info").innerHTML = "Tocaste con dos solo dedo!";
+    }
+
+    // Función que maneja tres toques
+    function handle_three_touches(e) {
+        //console.log("Tres toques detectados.");
+        document.body.style.backgroundColor = "lightcoral"; // Cambiar el fondo a coral claro
+        document.getElementById("info").textContent = "Tocaste con tres dedos!";
+    }
+
+
+
 
     function handleStart(evt) {
 
@@ -38,8 +83,6 @@ window.onload = () => {
         }
         */
 
-
-
     }
 
 
@@ -52,17 +95,19 @@ window.onload = () => {
 
             var touch = touches[i];
 
-        }
 
-        var x = touch.pageX;
-        var y = touch.pageY;
 
-        let rect = div3.getBoundingClientRect();
-        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+            var x = touch.pageX;
+            var y = touch.pageY;
 
-            puntosRecorridos.push({ x: x, y: y });
+            let rect = div3.getBoundingClientRect();
+            if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
 
-            input.value = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`).join(" -> ");
+                puntosRecorridos.push({ x: x, y: y });
+
+                input.value = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`).join(" -> ");
+            }
+
         }
     }
 
