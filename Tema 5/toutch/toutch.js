@@ -3,9 +3,9 @@
 
 let pulsados = document.querySelector("section");
 
-let div3 = document.querySelectorId("3")
+let div3 = document.getElementById("3")
 
-let input = document.querySelectorId("puntos");
+let input = document.getElementById("puntos");
 
 //pulsados.addEventListener('click', (e) => console.log("se ha pulsado " + e.target.id ))
 
@@ -52,13 +52,10 @@ function handleMove(evt) {
 
         var touch = touches[i];
 
-        ctx.beginPath();
-        ctx.moveTo(touch.pageX, touch.pageY); // Posición inicial
-        ctx.lineTo(touch.pageX, touch.pageY); // Posición final (si es solo un toque, el punto no se moverá)
-        ctx.strokeStyle = "red"; // Línea roja
-        ctx.lineWidth = 5; // Grosor de la línea
-        ctx.stroke();
     }
+
+    var x = touch.pageX;
+    var y = touch.pageY;
 
     if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
 
@@ -78,18 +75,11 @@ function handleEnd(evt) {
 
 
     //if (logEvents) log(ev.type, ev, false);
-    if (ev.targetTouches.length == 0) {
-        
-        ev.target.style.background = "white";
-        ev.target.style.outline = "1px solid black";
+    if (evt.targetTouches.length == 0) {
+
+        evt.target.style.background = "white";
+        evt.target.style.outline = "1px solid black";
     }
 
 }
 //}
-
-
-if (ev.targetTouches.length == 0) {
-    // Restore background and outline to original values
-    ev.target.style.background = "white";
-    ev.target.style.outline = "1px solid black";
-}
