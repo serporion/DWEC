@@ -5,7 +5,7 @@ window.onload = () => {
 
     let div3 = document.getElementById("3")
 
-    let input = document.getElementById("puntos");
+    let labelCoordenadas = document.getElementById("puntos");
 
     //pulsados.addEventListener('click', (e) => console.log("se ha pulsado " + e.target.id ))
 
@@ -91,13 +91,13 @@ window.onload = () => {
 
         let touches = evt.changedTouches;
 
-        if (evt.targetTouches.length > 0) {
+        //if (evt.targetTouches.length > 0) {
 
-            let touch = touches[0];
+            //let touch = touches[0];
 
-            //for (let i = 0; i < touches.length; i++) {
+            for (let i = 0; i < touches.length; i++) {
 
-            //    let touch = touches[i];
+                let touch = touches[i];
 
                 let x = touch.pageX;
                 let y = touch.pageY;
@@ -108,11 +108,11 @@ window.onload = () => {
 
                     puntosRecorridos.push({ x: x, y: y });
 
-                    input.value = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`).join(" -> ");
+                    labelCoordenadas.innerHTML = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`);
                 }
 
-            //}
-        }
+            }
+        //}
     }
 
 
@@ -127,7 +127,7 @@ window.onload = () => {
             evt.target.style.outline = "1px solid black";
             document.body.style.backgroundColor = "white";
             document.getElementById("info").innerHTML = "Toca la pantalla con uno, dos o tres dedos.";
-            document.getElementById("puntos").value = "";
+            document.getElementById("puntos").innerHTML = "Coordenadas";
             document.getElementById("parrafo").style.backgroundColor = "white";
         }
 
