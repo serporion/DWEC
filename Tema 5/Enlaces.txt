@@ -1,0 +1,9 @@
+https://itnext.io/gyro-web-accessing-the-device-orientation-in-javascript-387da43eeb84
+https://javascript.info/bubbling-and-capturing
+
+Todos los eventos o casi todos
+https://www.w3schools.com/jsref/obj_events.asp
+
+https://developer.mozilla.org/es/docs/Web/API/Touch_events
+
+https://github.com/mdn/dom-examples/blob/main/touchevents/Multi-touch_interaction.html
