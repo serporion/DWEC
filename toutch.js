@@ -89,42 +89,44 @@ window.onload = () => {
     function handleMove(evt) {
         evt.preventDefault();
 
-        var touches = evt.changedTouches;
+        let touches = evt.changedTouches;
 
-        for (var i = 0; i < touches.length; i++) {
-
-            var touch = touches[i];
+        if (evt.targetTouches.length == 1) {
 
 
+            for (let i = 0; i < touches.length; i++) {
 
-            var x = touch.pageX;
-            var y = touch.pageY;
+                let touch = touches[i];
 
-            let rect = div3.getBoundingClientRect();
-            if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+                let x = touch.pageX;
+                let y = touch.pageY;
 
-                puntosRecorridos.push({ x: x, y: y });
+                let rect = div3.getBoundingClientRect();
+                
+                if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
 
-                input.value = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`).join(" -> ");
+                    puntosRecorridos.push({ x: x, y: y });
+
+                    input.value = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`).join(" -> ");
+                }
+
             }
-
         }
     }
 
+
+
     function handleEnd(evt) {
         evt.preventDefault();
-
-        /*
-        var el = evt.target; 
-        el.style.backgroundColor = "blue"; 
-        */
-
 
         //if (logEvents) log(ev.type, ev, false);
         if (evt.targetTouches.length == 0) {
 
             evt.target.style.background = "blue";
             evt.target.style.outline = "1px solid black";
+            document.body.style.backgroundColor = "white";
+            document.getElementById("info").innerHTML = "Toca la pantalla con uno, dos o tres dedos.";
+            document.getElementById("parrafo").style.backgroundColor = "white";
         }
 
     }
