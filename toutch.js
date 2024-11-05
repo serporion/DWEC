@@ -22,7 +22,7 @@ window.onload = () => {
 
         evt.preventDefault(); //Esto evita que el navegador aplique cosas que no queremos.
 
-        var el = evt.target;
+        let el = evt.target;
 
         el.style.backgroundColor = "yellow";
 
@@ -57,9 +57,10 @@ window.onload = () => {
         var x = touch.pageX;
         var y = touch.pageY;
 
+        let rect = div3.getBoundingClientRect();
         if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
 
-            coordinates.push({ x: x, y: y });
+            puntosRecorridos.push({ x: x, y: y });
 
             input.value = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`).join(" -> ");
         }
@@ -77,7 +78,7 @@ window.onload = () => {
         //if (logEvents) log(ev.type, ev, false);
         if (evt.targetTouches.length == 0) {
 
-            evt.target.style.background = "white";
+            evt.target.style.background = "blue";
             evt.target.style.outline = "1px solid black";
         }
 

@@ -7,3 +7,5 @@ https://www.w3schools.com/jsref/obj_events.asp
 https://developer.mozilla.org/es/docs/Web/API/Touch_events
 
 https://github.com/mdn/dom-examples/blob/main/touchevents/Multi-touch_interaction.html
+
+https://web.dev/articles/device-orientation?hl=es-419
