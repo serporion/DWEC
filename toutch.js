@@ -3,7 +3,7 @@ window.onload = () => {
 
     let pulsados = document.querySelector("section");
 
-    let div3 = document.getElementById("3")
+    let div3 = document.getElementById("recorre")
 
     let labelCoordenadas = document.getElementById("puntos");
 
@@ -42,22 +42,25 @@ window.onload = () => {
 
     function handle_one_touch(e) {
         //console.log("Un solo toque detectado.");
-        document.body.style.backgroundColor = "lightblue"; // Cambiar el fondo a azul claro
+        document.body.style.backgroundColor = "lightblue"; 
         document.getElementById("info").innerHTML = "Tocaste con un solo dedo!";
+
     }
 
-    // Función que maneja dos toques
+    
     function handle_two_touches(e) {
         //console.log("Dos toques detectados.");
-        document.body.style.backgroundColor = "lightgreen"; // Cambiar el fondo a verde claro
+        document.body.style.backgroundColor = "lightgreen"; 
         document.getElementById("info").innerHTML = "Tocaste con dos solo dedo!";
+
     }
 
-    // Función que maneja tres toques
+    
     function handle_three_touches(e) {
         //console.log("Tres toques detectados.");
-        document.body.style.backgroundColor = "lightcoral"; // Cambiar el fondo a coral claro
+        document.body.style.backgroundColor = "lightcoral"; 
         document.getElementById("info").textContent = "Tocaste con tres dedos!";
+
     }
 
 
@@ -106,15 +109,17 @@ window.onload = () => {
                 
                 if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
 
+                    labelCoordenadas.innerHTML = ''; 
+
                     puntosRecorridos.push({ x: x, y: y });
 
-                    labelCoordenadas.innerHTML = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`);
+                    //labelCoordenadas.innerHTML = puntosRecorridos.map(coord => `(${coord.x}, ${coord.y})`);
+                    labelCoordenadas.innerHTML = `(${x}, ${y})`;
                 }
 
             }
         //}
     }
-
 
 
     function handleEnd(evt) {

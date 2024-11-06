@@ -8,9 +8,23 @@
     <script src="toutch.js"></script>
 
     <style>
-        div {
-            margin: 0em;
-            padding: 2em;
+
+        body {
+            margin: 0 auto;            
+            
+        }
+
+        section {
+            margin: 0 auto;            
+            position: relative;
+            display: block;
+            text-align: center;
+            width: 100px;
+            height: 420px;
+        }
+
+        div {            
+            margin: 0em;            
             width: 100%;
             height: 80px;
             text-align: center;
@@ -19,13 +33,7 @@
             background: white;
         }
 
-        section {
-            display: block;
-            text-align: center;
-            width: 100px;
-            height: 420px;
-        }
-
+        
         input {
             display: block;
             margin: 15px;
@@ -36,25 +44,25 @@
     </style>
 </head>
 
-<body>  
+<body>
     <h1>Interactua con todos los elementos</h1>
 
     <label type="text" id="puntos">Coordenadas</label>
 
     <section>
-        
+
         <p id="info">Toca la pantalla con uno, dos o tres dedos.</p>
 
         <div class="toutch" id="1">Tocar 1</div>
         <div class="toutch" id="2">Tocar 2</div>
-        <div class="toutch" id="3">Desliza</div>
+        <div class="toutch" id="recorre">Desliza</div>
         <div class="toutch" id="4">Tocar 4</div>
 
         <p id="parrafo">Esto es otro parrafo</p>
 
     </section>
 
-    
+
 
 </body>
 
