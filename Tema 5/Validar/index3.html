@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validacion en Tiempo Real</title>
+    <style type="text/css">
+
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f28b82;
+            font-family: Arial, sans-serif;
+        }
+
+        .login {
+            text-align: center;
+            color: #fbe9e7;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #fbe9e7;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 2px solid #fbe9e7;
+            background-color: transparent;
+            color: #fbe9e7;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .requisitos {            
+            text-align: left;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        .requisitos li {
+            margin: 5px 0;
+        }
+
+        .requisitos li.valido {
+            color: #112c13;
+            
+        }
+
+        .requisitos li.invalido {
+            color: #df230e;
+            
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #fbe9e7;
+            color: #d17269;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+    </style>
+
+    <script src="formulario3.js"></script>
+
+
+</head>
+
+<body>
+    <div class="login">
+        <h1>username</h1>
+        <input type="text" id="user" placeholder="Teclea tu usuario y respeta los requisitos">
+        <ul class="requisitos">
+            <li id="minuscula">1 lowercase character</li>
+            <li id="mayuscula">1 uppercase character</li>
+            <li id="longitud">6 minimum characters</li>
+        </ul>
+        <button id="enviar" disabled>Submit</button>
+    </div>
+    
+</body>
+
+</html>

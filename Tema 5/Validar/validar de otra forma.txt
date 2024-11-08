@@ -1,0 +1,82 @@
+  document.getElementById('registroForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar el envío del formulario
+
+            // Limpiar errores anteriores
+            document.querySelectorAll('.error').forEach(function(error) {
+                error.textContent = '';
+            });
+
+            // Validaciones
+            let isValid = true;
+    // Validaciones
+    let isValid = true;
+
+    // Validar Nombre
+    const nombre = document.getElementById('nombre').value;
+    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ ]+$/.test(nombre)) {
+        document.getElementById('errorNombre').textContent = 'El nombre solo puede contener letras.';
+        isValid = false;
+    }
+
+    // Validar Apellidos
+    const apellidos = document.getElementById('apellidos').value;
+    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ ]+$/.test(apellidos)) {
+        document.getElementById('errorApellidos').textContent = 'Los apellidos solo pueden contener letras.';
+        isValid = false;
+    }
+
+    
+    const dni = document.getElementById('dni').value;
+    if (!/^\d{8}[A-Za-z]$/.test(dni)) {
+        document.getElementById('errorDNI').textContent = 'DNI inválido. Formato: 12345678A';
+        isValid = false;
+    }
+
+    
+    const telefono = document.getElementById('telefono').value;
+    if (!/^\d{9}$/.test(telefono)) {
+        document.getElementById('errorTelefono').textContent = 'Teléfono inválido. Formato: 123456789';
+        isValid = false;
+    }
+
+    // Validar Email
+    const email = document.getElementById('email').value;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('errorEmail').textContent = 'Email inválido.';
+        isValid = false;
+    }
+
+    // Validar Nombre de Usuario
+    const usuario = document.getElementById('usuario').value;
+    if
+siguee.....................
+
+y luego inmeidametten hace esto...
+
+
+
+// Evento de envío del formulario
+document.getElementById('registroForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evitar el envío del formulario
+
+    // Limpiar errores anteriores
+    document.querySelectorAll('.error').forEach(function(error) {
+        error.textContent = '';
+    });
+
+    // Validaciones
+    let isValid = true;
+    isValid &= validarNombre();
+    isValid &= validarApellidos();
+    isValid &= validarDNI();
+    isValid &= validarTelefono();
+    isValid &= validarEmail();
+    isValid &= validarUsuario();
+
+    // Si todas las validaciones son correctas, puedes enviar el formulario
+    if (isValid) {
+        // Aquí puedes enviar el formulario, por ejemplo:
+        // this.submit();
+        alert('Formulario enviado correctamente.');
+    }
+});
