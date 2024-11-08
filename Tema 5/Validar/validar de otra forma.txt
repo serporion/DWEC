@@ -59,24 +59,53 @@ y luego inmeidametten hace esto...
 document.getElementById('registroForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evitar el envío del formulario
 
-    // Limpiar errores anteriores
-    document.querySelectorAll('.error').forEach(function(error) {
-        error.textContent = '';
-    });
 
-    // Validaciones
-    let isValid = true;
-    isValid &= validarNombre();
-    isValid &= validarApellidos();
-    isValid &= validarDNI();
-    isValid &= validarTelefono();
-    isValid &= validarEmail();
-    isValid &= validarUsuario();
 
-    // Si todas las validaciones son correctas, puedes enviar el formulario
-    if (isValid) {
-        // Aquí puedes enviar el formulario, por ejemplo:
-        // this.submit();
-        alert('Formulario enviado correctamente.');
-    }
-});
+
+
+/////////////////////////////////////////
+
+let esFormularioValido = true;
+
+    let inputs = document.querySelectorAll("input");
+
+        inputs.forEach(element => {
+            
+            if (!vacio(element)) {
+
+                let esValido = true;
+    
+                switch (element.id) {
+                    case "nombre":
+                        esValido = validarNombre(element);
+                        break;
+                    case "apellidos":
+                        esValido = validarApellidos(element);
+                        break;
+                    case "telefono":
+                        esValido = validarTelefono(element);
+                        break;
+                    case "email":
+                        esValido = validarEmail(element);
+                        break;
+                    case "password":
+                        esValido = validarPassword(element);
+                        break;
+                    case "repitePassword":
+                        esValido = validaIdentico(element);
+                        break;
+
+                    
+                }
+                
+
+                if (!esValido) {
+                    esFormularioValido = false;
+                }
+
+            } else {
+                esFormularioValido = false;
+            }
+        });
+    
+        return esFormularioValido;

@@ -7,9 +7,9 @@ window.onload = () => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        if (validarFormulario()) {
+        if (validarFormulario(formularioCorrecto)) {
             console.log("Formulario enviado correctamente");
-            form.submit(); // esto envía el formulario. Aun no lo hemos dado en javascript
+            //form.submit(); // esto envía el formulario. Aun no lo hemos dado en javascript
         } else {
             console.log("Formulario no enviado");
         }
@@ -18,8 +18,7 @@ window.onload = () => {
         
     //Habría que incluir en la función validarFormulario un switch pasando por parámetro el campo. Lo dejo tal cual
     //está en la función que creé.
-    //Al final tengo que hacer el switch si quiero hacer la validación también antes del envio del formulario. Más completo.
-
+    
 
     /*
     let inputs = document.querySelectorAll("input");
@@ -30,73 +29,44 @@ window.onload = () => {
     */
 
 
-    document.getElementById("nombre").addEventListener("blur", (e) => validarNombre(e.target));
-    document.getElementById("apellidos").addEventListener("blur", (e) => validarApellidos(e.target));
-    document.getElementById("telefono").addEventListener("blur", (e) => validarTelefono(e.target));
-    document.getElementById("email").addEventListener("blur", (e) => validarEmail(e.target));
-    document.getElementById("password").addEventListener("blur", (e) => validarPassword(e.target));
-    document.getElementById("repitePassword").addEventListener("blur", (e) => validaIdentico(e.target));
+    let formularioCorrecto = true;
+
+    document.getElementById("nombre").addEventListener("blur", (e) => formularioCorrecto && validarNombre(e.target));
+    document.getElementById("apellidos").addEventListener("blur", (e) => formularioCorrecto && validarApellidos(e.target));
+    document.getElementById("telefono").addEventListener("blur", (e) => formularioCorrecto && validarTelefono(e.target));
+    document.getElementById("email").addEventListener("blur", (e) => formularioCorrecto && validarEmail(e.target));
+    document.getElementById("password").addEventListener("blur", (e) => formularioCorrecto && validarPassword(e.target));
+    document.getElementById("repitePassword").addEventListener("blur", (e) => formularioCorrecto && validaIdentico(e.target));
+
+    
 
 }
 
 
 
-function validarFormulario() {
+function validarFormulario(formularioCorrecto) {
 
-    let hayCamposVacios = false;
-
+    let hayCamposVacios = false;   
+    
     let inputs = document.querySelectorAll("input");
 
-    //inputs.forEach(element => { if (vacio(element)) { hayCamposVacios = true; } });
+    inputs.forEach(element => { if (vacio(element)) { hayCamposVacios = true; } });
 
-    //let esFormularioValido = true;
+    if (!hayCamposVacios) {
+        console.log("No hay campos vacíos");
 
-    //if (!hayCamposVacios) {
-      //  console.log("No hay campos vacíos");
-
-      //  return false;
-
-    //}else {
-
-        inputs.forEach(element => {
+        if (formularioCorrecto) {
+            console.log("Formulario correcto");
+            alert('Formulario enviado correctamente.');
+            this.submit();            
             
-            if (!vacio(element)) {
+        }
+        return false;
 
-                let esValido = true;
+    }else {
+        console.log("Segue habiendo campos vacíos");
     
-                switch (element.id) {
-                    case "nombre":
-                        esValido = validarNombre(element);
-                        break;
-                    case "apellidos":
-                        esValido = validarApellidos(element);
-                        break;
-                    case "telefono":
-                        esValido = validarTelefono(element);
-                        break;
-                    case "email":
-                        esValido = validarEmail(element);
-                        break;
-                    case "password":
-                        esValido = validarPassword(element);
-                        break;
-                    case "repitePassword":
-                        esValido = validaIdentico(element);
-                        break;
-                }
-    
-                if (!esValido) {
-                    esFormularioValido = false;
-                }
-
-            } else {
-                esFormularioValido = false;
-            }
-        });
-    
-        return esFormularioValido;
-
-    //}
+    }
 
 }
 
@@ -216,6 +186,8 @@ function validarPassword(e) {
 
 
 function validaIdentico(e) {
+
+    e.style.backgroundColor = "white";
 
     if (document.getElementById('password').value != e.value) {
         e.value = '';
