@@ -1,0 +1,67 @@
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #83D2E3;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-top: 20px;
+    font-weight: 400;
+    color:azure;
+    
+}
+
+
+p {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color:azure;
+}
+
+
+#tablero {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.carta {
+    width: 120px;
+    height: 140px;
+    background-image: url(./reverso.png);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    user-select: none;
+    transition: transform 0.2s;
+}
+
+.carta.volteo {
+    background-image: none;
+    background-color: #ffffff;
+    color: black;
+    transform: rotateY(180deg);
+}
+
+.carta.correcta {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+#reloj {
+    font-size: 2em;
+    margin: 20px 0;
+    color: azure;
+    font-weight: 400;
+    
+}

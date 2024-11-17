@@ -1,0 +1,70 @@
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #C1D62F; 
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+
+h1 {
+    font-size: 2.5em;
+    margin-top: 20px;
+    font-weight: 400;
+}
+
+
+p {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color:azure;
+}
+
+
+#carta {
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+}
+
+#carta div {
+    width: 27px;
+    height: 40px;
+    line-height: 40px;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: white;
+    color: #6baa0b;
+    font-size: 1em;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+#carta div:hover {
+    background-color: #6baa0b; 
+    color: white;
+}
+
+
+#tamano {
+    margin-top: 30px;
+    font-size: 1.5em;
+}
+
+
+#tamano p {
+    margin: 5px 0;
+}
+
+
+#tamano .status {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+

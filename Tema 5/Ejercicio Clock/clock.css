@@ -1,0 +1,64 @@
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f5a623;
+    color: white;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+
+h2 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+
+#reloj {
+    font-size: 3em;
+    margin: 20px 0;
+    
+}
+
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    width: 220px;
+    height: 70px;
+    background-color: #f5a623;
+    color: azure;
+    border-color: azure;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: azure; 
+    color:  #e89500;
+}
