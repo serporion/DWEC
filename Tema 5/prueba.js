@@ -24,24 +24,22 @@ boton.addEventListener("click", () =>{
 
 let miTitulo = document.createElement("h1");
 miTitulo.innerText = "titulo";
-
-
-
-
 document.body.appendChild(miTitulo);
 
 
+
+
+
 let miTitulo2 = document.createElement("h1");    
-
-
-document.body.removeChild(miTitulo);
+document.body.appendChild(miTitulo2);
+document.body.removeChild(miTitulo2);
 
 
 //Delegación de eventos. No hay que buscar el propio elemento. Podemos poner el padre.
 let borraElemento = document.getElementById("lista");
 
 borraElemento.addEventListener("click", (e) => {
-        //Se le pregunta al padre, porque se pregunta de quien es el padre.
+        //Se le pregunta al padre, porque se pregunta a quien pertenece.
         e.target.parentElement.removeChild(e.target);
 });
 

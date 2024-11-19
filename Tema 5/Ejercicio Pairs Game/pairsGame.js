@@ -1,8 +1,7 @@
 let contador = 0;
 let acierto = 1;
 
-
-//let array = ['imagen1','imagen1','imagen2','imagen2','imagen3','imagen3','imagen4','imagen4','imagen5','imagen5'];
+//let cartas = ['imagen1','imagen1','imagen2','imagen2','imagen3','imagen3','imagen4','imagen4','imagen5','imagen5'];
 
 let cartas = [
     { id: 'imagen1', url: 'imagen1.jpg' },
@@ -17,15 +16,16 @@ let cartas = [
     { id: 'imagen5', url: 'imagen5.jpg' }
 ];
 
+
 let carta1 = null;
 let carta2 = null;
 
 let segundos = 0;
 let milisegundos = 0;
 
-
 let intervalo = null; 
 let temporizadorActivo = false; 
+
 
 window.onload = () => {
 
@@ -84,8 +84,8 @@ function comprobar(carta1,carta2) {
         
         carta1.classList.remove('volteo');
         carta2.classList.remove('volteo');
-        //carta1.innerText = '';
-        //carta2.innerText = '';
+        carta1.innerText = '';
+        carta2.innerText = '';
         carta1.style.backgroundImage = "url('./reverso.png')";
         carta2.style.backgroundImage = "url('./reverso.png')";
               
@@ -113,12 +113,8 @@ function resetCards() {
 
 function mezclar(array) {
     for (let i = array.length - 1; i > 0; i--) {
-
         const j = Math.floor(Math.random() * (i + 1));
-        
-        let temp = array[i];   
-        array[i] = array[j];   
-        array[j] = temp;       
+        [array[i], array[j]] = [array[j], array[i]]; 
     }
 }
 
@@ -130,10 +126,14 @@ function construirTablero(divs) {
         let carta = cartas[i]; 
     
         let crearDiv = document.createElement("div");
+        crearDiv = document.createElement("div");
         crearDiv.classList.add('carta');
+
+        //crearDiv.id = cartas[i]; 
         crearDiv.setAttribute('data-id', carta.id);
         crearDiv.setAttribute('data-url', carta.url);
     
+        
         crearDiv.addEventListener('click', pinchaCarta);
         tablero.appendChild(crearDiv);
     }
@@ -165,6 +165,7 @@ function comenzar() {
             if (segundos == 30){
                 parar();
                 document.getElementById("instrucciones").innerText = "OUT, YOU ARE LOOSER!";
+                
             }
 
         }, 10);
@@ -173,6 +174,16 @@ function comenzar() {
 
 function parar() {
     clearInterval(intervalo);
+
+    //No funciona porque solo se está pasando el div, seleccionado. 
+    //Cogemos la referencia a la función, pero seleccionando todas las cartas.
+    //crearDiv.removeEventListener('click', pinchaCarta)
+
+    const cartasDelTablero = document.querySelectorAll('.carta');
+
     
-    
+    cartasDelTablero.forEach(carta => {
+        carta.removeEventListener('click', pinchaCarta);
+    });
+        
 }
