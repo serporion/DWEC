@@ -1,0 +1,8 @@
+obj = {"Book":
+        {
+        "Title": "Parsing Techniques",
+        "Authors": [ "Dick Grune", "Ceriel J.H. Jacobs" ],
+        "Date": "2007",
+        "Publisher": "Springer"
+        }
+    }

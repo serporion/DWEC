@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        //'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY',
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+
+      //Al final globales
+      let chart;
+      let data;
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country', 'Visitantes'],
+          ['France', 100],
+          ['Spain', 85],
+          ['United States', 67],
+          ['Italy', 57],
+          ['Turkey', 55],
+          ['Mexico', 42],
+          ['United Kingdom', 37],
+          ['China', 36]
+
+        ]);
+
+        var options = {
+          //displayMode: 'text',
+          colorAxis: {colors: ['green', 'blue']},
+          animation: {
+            duration: 1000, // Duración de la animación de actualización en milisegundos
+            easing: 'out'   // Tipo de easing (puedes probar otras opciones como 'inAndOut', 'in', 'out')
+          }
+          
+        };
+
+        chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+
+        setTimeout(cambiaDatos, 5000);
+
+      }
+
+
+      function cambiaDatos() {
+        
+        var datos = google.visualization.arrayToDataTable([
+          ['Country', 'Visitantes'],
+          ['France', 120],
+          ['Spain', 100],
+          ['United States', 85],
+          ['Italy', 75],
+          ['Turkey', 80],
+          ['Mexico', 60],
+          ['United Kingdom', 45],
+          ['China', 50]
+        ]);
+
+        
+        chart.draw(datos, {
+          colorAxis: {colors: ['red', 'yellow']}, 
+          animation: {
+            duration: 60000, 
+            easing: 'out'   
+          }
+        });
+
+        setTimeout(drawRegionsMap, 5000);
+
+      }
+
+    </script>
+  </head>
+  <body>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>

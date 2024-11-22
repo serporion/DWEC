@@ -1,41 +1,75 @@
 
+let puntosJugador1 = 0;
+let puntosJugador2 = 0;
+let parar;
+
 window.onload = () => {
 
     const svgPadre = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svgPadre.setAttribute("width", 1000);
-    svgPadre.setAttribute("height", 1000);
-    svgPadre.style.border = "2px solid pink";
-    document.body.appendChild(svgPadre);
+        svgPadre.setAttribute("width", 1000);
+        svgPadre.setAttribute("height", 1000);
+        svgPadre.style.border = "2px solid pink";
+        document.body.appendChild(svgPadre);
 
     
     const bolas = [];
 
-    for (let i = 0; i < 20; i++) {
-        bolas.push(new Bola(svgPadre, 300));
+    for (let i = 0; i < 15; i++) {
+        bolas.push(new Bola(svgPadre, 500));
     }
 
     let barra1 = new Barra(svgPadre, "barra1", 20, 450);
     let barra2 = new Barra(svgPadre, "barra2", 960, 450);
     
-    
+    crearMarcadores();
 
     document.addEventListener("keydown", (e) => {
 
         if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-            barra1.mover(e);  
+            barra2.mover(e);  
         }
         if (e.key === "s" || e.key === "w") {
-            barra2.mover(e); 
+            barra1.mover(e); 
         }
     });
 
-    setInterval(() => {
-        bolas.forEach((bola) => {bola.mover();bola.detectarColisionesConBarras(barra1, barra2);});
+    parar = setInterval(() => {
+        bolas.forEach((bola) => {bola.mover(puntosJugador1, puntosJugador2);bola.detectarColisionesConBarras(barra1, barra2);bola.ganador();});
+        
         
     }, 30);
 
+
+   
+
+   
 };
 
+
+function crearMarcadores (){ //La puntuacion global debe ser.
+
+    let marcador1 = document.createElement("div");
+        marcador1.id = "marcador1";
+        marcador1.style.position = "absolute";
+        marcador1.style.top = "20px";
+        marcador1.style.left = "20px";
+        marcador1.style.fontSize = "50px";
+        marcador1.style.color = "white";
+        marcador1.textContent = "Jugador 1: 0";
+        document.body.appendChild(marcador1);
+
+    let marcador2 = document.createElement("div");
+        marcador2.id = "marcador2";
+        marcador2.style.position = "absolute";
+        marcador2.style.top = "20px";
+        marcador2.style.right = "20px";
+        marcador2.style.fontSize = "50px";
+        marcador2.style.color = "white";
+        marcador2.textContent = "Jugador 2: 0";
+        document.body.appendChild(marcador2);
+
+
+}
 
 class Bola {
 
@@ -49,13 +83,12 @@ class Bola {
         };
 
         
-        this.posicionX = this.getRandomInt(50, tamano);
-        this.posicionY = this.getRandomInt(50, tamano);
+        this.posicionX = this.getRandomInt(500, tamano);
+        this.posicionY = this.getRandomInt(500, tamano);
         
         this.radio = this.getRandomInt(5, 25);
         this.color = this.getRandomColor();
         
-        //Idea para cambiar de dirección
         this.direccionX = Math.random() * 2 - 1; 
         this.direccionY = Math.random() * 2 - 1; 
 
@@ -65,7 +98,6 @@ class Bola {
         this.creaBola(svgPadre);
     }
 
-    // Generar valores aleatorios para X y Y
     getRandomInt(minTamano, maxTamano) {
         return Math.floor(Math.random() * (maxTamano - minTamano + 1)) + minTamano;
     }
@@ -97,19 +129,22 @@ class Bola {
     
     
     mover() {
-
         this.posicionX += this.direccionX * this.velocidad;
         this.posicionY += this.direccionY * this.velocidad;
 
-        // MAL, darse cuenta que no sirve para las dos condiciones. Las bolas se salian.
-        let posicionTotalX = this.posicionX + this.radio;
-        let posicionTotalY = this.posicionY + this.radio;
-
-
         if (this.posicionX + this.radio > this.limite.Xmax || this.posicionX - this.radio < this.limite.Xmin) {
             this.direccionX *= -1; 
-        }
 
+            // Si la bola toca la pared contraria, sumar un punto al jugador contrario
+            if (this.posicionX-(this.radio*2) <= this.limite.Xmin) {
+                puntosJugador2++;
+                marcador2.textContent = `Jugador 2: ${puntosJugador2}`;
+            }
+            if (this.posicionX+(this.radio*2) > this.limite.Xmax) {
+                puntosJugador1++;
+                marcador1.textContent = `Jugador 1: ${puntosJugador1}`;
+            }
+        }
 
         if (this.posicionY + this.radio > this.limite.Ymax || this.posicionY - this.radio < this.limite.Ymin) {
             this.direccionY *= -1; 
@@ -118,9 +153,25 @@ class Bola {
         this.bola.setAttribute("cx", this.posicionX);
         this.bola.setAttribute("cy", this.posicionY);
 
+        
     }
 
-    
+    ganador() {
+
+        if (puntosJugador1 == 5) {        
+            clearInterval(parar);
+            document.getElementById("ganador").style.fontSize = "50px";
+            document.getElementById("ganador").innerHTML = "Ganaste Jugador 1";
+            
+            
+        } else if (puntosJugador2 == 5) {
+            clearInterval(parar);
+            document.getElementById("ganador").style.fontSize = "50px";
+            document.getElementById("ganador").innerHTML = "Ganaste Jugador 1";
+        }
+
+        
+    }
 
     detectarColisionesConBarras(barra1, barra2) {
 
@@ -133,7 +184,6 @@ class Bola {
             this.direccionX *= -1; 
         }
 
-        // Barra 2
         if (
             this.posicionX + this.radio > barra2.posicionX && 
             this.posicionX - this.radio < barra2.posicionX + barra2.ancho && 
@@ -161,9 +211,7 @@ class Barra {
         this.id = id;
 
         this.direccionX = Math.random() * 2 - 1; 
-        this.direccionY = Math.random() * 2 - 1;
-
-        this.velocidad = 0.05;
+        this.direccionY = Math.random() * 2 - 1;        
 
         this.posicionX = x; // svgPadre.getAttribute("width"  + this.ancho);
         this.posicionY = y; //100;//svgPadre.getAttribute("height" + this.alto);
@@ -200,34 +248,41 @@ class Barra {
     
     mover(e) {
 
-        if (this.posicionY + this.alto > this.limite.Ymax || this.posicionY < this.limite.Ymin) {
-            //this.direccionY *= -1; 
-            return;
+
+        if (this.posicionY  > this.limite.Ymax - this.alto) {
+            this.posicionY = this.limite.Ymax - (this.alto*2-this.alto/2);
+        }
+    
+        if (this.posicionY  < this.limite.Ymin + this.alto/2) {
+            this.posicionY = this.limite.Ymin + (this.alto/2);
         }
 
-        //this.posicionY += this.posicionY * this.velocidad;
-
         if (e.key =="ArrowDown"){
-            this.barra.setAttribute("y",  this.posicionY+=this.posicionY * this.velocidad);
+                this.barra.setAttribute("y",  this.posicionY+=30);
         }
 
         else if (e.key == "ArrowUp") {
-                this.barra.setAttribute("y",  this.posicionY-=this.posicionY * this.velocidad);
-                //this.posicionX -= this.direccionX * this.velocidad;
-                //this.posicionY += this.direccionY * this.velocidad;
+                this.barra.setAttribute("y",  this.posicionY-=30);
+        
         } 
         else if (e.key == "s") {
                 
-                this.barra.setAttribute("y",  this.posicionY+=this.posicionY * this.velocidad);
-                //this.posicionX += this.direccionX * this.velocidad;
-                //this.posicionY += this.direccionY * this.velocidad;
+                this.barra.setAttribute("y",  this.posicionY+=30);
         }
         else if (e.key == "w") {
-                this.barra.setAttribute("y",  this.posicionY-=this.posicionY * this.velocidad);
-                //this.posicionX -= this.direccionX * this.velocidad;
-                //this.posicionY += this.direccionY * this.velocidad;
+                this.barra.setAttribute("y",  this.posicionY-=30);
+        
         }
 
+
+        if (this.posicionX-(this.radio*2) <= this.limite.Xmin) {
+            puntosJugador2++;
+            marcador2.textContent = `Jugador 2: ${puntosJugador2}`;
+        }
+        if (this.posicionX+(this.radio*2) > this.limite.Xmax) {
+            puntosJugador1++;
+            marcador1.textContent = `Jugador 1: ${puntosJugador1}`;
+        }
         //a lo loco!
         /*
             setInterval(() => {
@@ -241,12 +296,8 @@ class Barra {
             }, 30);
         */
 
-        
-       
     }
-
-
-    
+  
 
 
 }
