@@ -51,20 +51,20 @@ function crearMarcadores (){ //La puntuacion global debe ser.
     let marcador1 = document.createElement("div");
         marcador1.id = "marcador1";
         marcador1.style.position = "absolute";
-        marcador1.style.top = "20px";
-        marcador1.style.left = "20px";
+        marcador1.style.top = "40px";
+        marcador1.style.left = "60px";
         marcador1.style.fontSize = "50px";
-        marcador1.style.color = "white";
+        marcador1.style.color = "orange";
         marcador1.textContent = "Jugador 1: 0";
         document.body.appendChild(marcador1);
 
     let marcador2 = document.createElement("div");
         marcador2.id = "marcador2";
         marcador2.style.position = "absolute";
-        marcador2.style.top = "20px";
-        marcador2.style.right = "20px";
+        marcador2.style.top = "40px";
+        marcador2.style.right = "60px";
         marcador2.style.fontSize = "50px";
-        marcador2.style.color = "white";
+        marcador2.style.color = "orange";
         marcador2.textContent = "Jugador 2: 0";
         document.body.appendChild(marcador2);
 
@@ -167,7 +167,7 @@ class Bola {
         } else if (puntosJugador2 == 5) {
             clearInterval(parar);
             document.getElementById("ganador").style.fontSize = "50px";
-            document.getElementById("ganador").innerHTML = "Ganaste Jugador 1";
+            document.getElementById("ganador").innerHTML = "Ganaste Jugador 2";
         }
 
         
