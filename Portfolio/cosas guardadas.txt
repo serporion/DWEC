@@ -1,0 +1,51 @@
+*, *::before, *::after {    /* Adaptación del Hack a las creaciones before y after */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-size: 62,5%;
+    --principal: #014d4e;
+    --secundario: #ff9408;
+    --terciario: #017374;
+    --secundario-modificado: #ff94088e; 
+    --terciario-modificado: #01727498;
+    --fuente-principal: font-family="Indy";
+    --tamano-principal: font-size="1.5rem";
+    box-sizing: border-box; /* Hack para Box Model */
+    scroll-snap-type: y mandatory;
+}
+
+
+
+
+
+    --blanco: #ffffff;
+    font-size: 62,5%;
+    --principal: #014d4e;
+    --secundario: #ff9408;
+    --terciario: #017374;
+    --secundario-modificado: #ff94088e; 
+    --terciario-modificado: #01727498;
+    --fuente-principal: font-family="Indy";
+    --tamano-principal: font-size="1.5rem";
+    box-sizing: border-box; /* Hack para Box Model */
+    scroll-snap-type: y mandatory;
+
+
+bottom: 3rem; /* Todos estos a 0 para que se expanda a todos los lados*/
+    left: 10rem;
+    top: 5rem;
+    right: 10rem;
+
+
+@media (min-width: 768px) {
+    .proyectos{
+        display:flex;
+        /*width: 33%;*/
+        flex-wrap: wrap;
+        /*grid-template-columns: repeat(3, 1fr); 
+        column-gap: 2rem;*/
+    }
+}

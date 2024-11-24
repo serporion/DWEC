@@ -1,53 +1,45 @@
-
 let puntosJugador1 = 0;
 let puntosJugador2 = 0;
 let parar;
-const VELOCIDAD = 5;
 
 window.onload = () => {
 
     const svgPadre = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgPadre.setAttribute("width", 1000);
-        svgPadre.setAttribute("height", 500);
-        svgPadre.style.border = "5px solid #CCFF00";
-        svgPadre.style.boxShadow = "0 0 50px #888888";
+        svgPadre.setAttribute("height", 1000);
+        svgPadre.style.border = "2px solid pink";
         document.body.appendChild(svgPadre);
 
     
     const bolas = [];
 
-    for (let i = 0; i < 1; i++) {
-        bolas.push(new Bola(svgPadre));
+    for (let i = 0; i < 50; i++) {
+        bolas.push(new Bola(svgPadre, 500));
     }
 
-    let barra1 = new Barra(svgPadre, "barra1", 20, 200);
-    let barra2 = new Barra(svgPadre, "barra2", 960, 200);
+    let barra1 = new Barra(svgPadre, "barra1", 20, 450);
+    let barra2 = new Barra(svgPadre, "barra2", 960, 450);
     
     crearMarcadores();
 
     document.addEventListener("keydown", (e) => {
 
-        if (e.key === "ArrowDown" ) {
-            barra2.direccionY = VELOCIDAD;
-
-        } else if (e.key === "ArrowUp") {
-            barra2.direccionY = VELOCIDAD*-1;  
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            barra2.mover(e);  
         }
-
-        if (e.key === "s") {
-            barra1.direccionY = VELOCIDAD;
-
-        }else if (e.key === "w"){
-            barra1.direccionY = VELOCIDAD*-1;
+        if (e.key === "s" || e.key === "w") {
+            barra1.mover(e); 
         }
     });
 
     parar = setInterval(() => {
-        bolas.forEach((bola) => {bola.mover(puntosJugador1, puntosJugador2, svgPadre );bola.detectarColisionesConBarras(barra1, barra2);bola.ganador();});
-        barra1.mover();
-        barra2.mover();
+        bolas.forEach((bola) => {bola.mover(puntosJugador1, puntosJugador2);bola.detectarColisionesConBarras(barra1, barra2);bola.ganador();});
+        
         
     }, 30);
+
+
+   
 
    
 };
@@ -80,18 +72,18 @@ function crearMarcadores (){ //La puntuacion global debe ser.
 
 class Bola {
 
-    constructor(svgPadre) {
+    constructor(svgPadre, tamano) {
         
         this.limite = {
-            Xmax: svgPadre.getAttribute("width"),
+            Xmax: 1000,
             Xmin: 0,
-            Ymax: svgPadre.getAttribute("height"),
+            Ymax: 1000,
             Ymin: 0,            
         };
 
         
-        this.posicionX = this.getRandomInt(svgPadre.getAttribute("width")/2, svgPadre.getAttribute("height")/2);
-        this.posicionY = this.getRandomInt(250, 500);
+        this.posicionX = this.getRandomInt(500, tamano);
+        this.posicionY = this.getRandomInt(500, tamano);
         
         this.radio = this.getRandomInt(5, 25);
         this.color = this.getRandomColor();
@@ -135,8 +127,7 @@ class Bola {
 
     
     
-    mover(svgPadre) {
-
+    mover() {
         this.posicionX += this.direccionX * this.velocidad;
         this.posicionY += this.direccionY * this.velocidad;
 
@@ -146,19 +137,10 @@ class Bola {
             // Si la bola toca la pared contraria, sumar un punto al jugador contrario
             if (this.posicionX-(this.radio*2) <= this.limite.Xmin) {
                 puntosJugador2++;
-                this.posicionX = this.limite.Xmax/2 ;
-                this.posicionY = this.limite.Ymax/2 ;
-                this.bola.setAttribute("r", this.getRandomInt(5, 25));
-                this.bola.setAttribute("fill", this.getRandomColor());
-                //this.svgPadre.appendChild(this.bola);
                 marcador2.textContent = `Jugador 2: ${puntosJugador2}`;
             }
             if (this.posicionX+(this.radio*2) > this.limite.Xmax) {
                 puntosJugador1++;
-                this.posicionX = this.limite.Xmax/2 ;
-                this.posicionY = this.limite.Ymax/2 ;
-                this.bola.setAttribute("r", this.getRandomInt(5, 25));
-                this.bola.setAttribute("fill", this.getRandomColor());
                 marcador1.textContent = `Jugador 1: ${puntosJugador1}`;
             }
         }
@@ -217,9 +199,9 @@ class Barra {
     constructor(svgPadre, id, x, y) {
         
         this.limite = {
-            Xmax: svgPadre.getAttribute("height"),
+            Xmax: 1000,
             Xmin: 0,
-            Ymax:  svgPadre.getAttribute("height"),
+            Ymax: 1000,
             Ymin: 0,            
         };
 
@@ -227,15 +209,15 @@ class Barra {
         this.alto = 100;
         this.id = id;
 
-        this.velocidad = 0.05;
-        this.direccionX = 0; //Math.random() * 2 - 1; 
-        this.direccionY = 0; //Math.random() * 2 - 1;        
+        this.direccionX = Math.random() * 2 - 1; 
+        this.direccionY = Math.random() * 2 - 1;        
 
         this.posicionX = x; // svgPadre.getAttribute("width"  + this.ancho);
         this.posicionY = y; //100;//svgPadre.getAttribute("height" + this.alto);
         
         this.color = this.getRandomColor();
         
+               
         this.creaBarra(svgPadre);
     }
 
@@ -251,7 +233,6 @@ class Barra {
 
         return color;
     }
-
     creaBarra(svgPadre) {
         this.barra = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         this.barra.setAttribute("id", this.id);
@@ -260,25 +241,62 @@ class Barra {
         this.barra.setAttribute("fill", this.color);
         this.barra.setAttribute("x", this.posicionX);
         this.barra.setAttribute("y", this.posicionY);
-        this.barra.setAttribute("rx", "50px");
         svgPadre.appendChild(this.barra);
     }
 
     
-    
-  
-    mover() {
+    mover(e) {
 
-        this.posicionY += this.direccionY;
 
-        if (this.posicionY + this.alto > this.limite.Ymax || this.posicionY < this.limite.Ymin) {
-            this.direccionY *= -1; // Cambia de dirección al llegar a los bordes
+        if (this.posicionY  > this.limite.Ymax - this.alto) {
+            this.posicionY = this.limite.Ymax - (this.alto*2-this.alto/2);
         }
-        this.barra.setAttribute("y", this.posicionY);
-        this.posicionY += this.direccionY;
+    
+        if (this.posicionY  < this.limite.Ymin + this.alto/2) {
+            this.posicionY = this.limite.Ymin + (this.alto/2);
+        }
+
+        if (e.key =="ArrowDown"){
+                this.barra.setAttribute("y",  this.posicionY+=30);
+        }
+
+        else if (e.key == "ArrowUp") {
+                this.barra.setAttribute("y",  this.posicionY-=30);
+        
+        } 
+        else if (e.key == "s") {
+                
+                this.barra.setAttribute("y",  this.posicionY+=30);
+        }
+        else if (e.key == "w") {
+                this.barra.setAttribute("y",  this.posicionY-=30);
+        
+        }
+
+
+        if (this.posicionX-(this.radio*2) <= this.limite.Xmin) {
+            puntosJugador2++;
+            marcador2.textContent = `Jugador 2: ${puntosJugador2}`;
+        }
+        if (this.posicionX+(this.radio*2) > this.limite.Xmax) {
+            puntosJugador1++;
+            marcador1.textContent = `Jugador 1: ${puntosJugador1}`;
+        }
+        //a lo loco!
+        /*
+            setInterval(() => {
+                this.posicionY += this.direccionY;// * this.velocidad;
+    
+                if (this.posicionY + this.alto > this.limite.Ymax || this.posicionY < this.limite.Ymin) {
+                    this.direccionY *= -1; // Cambia de dirección al llegar a los bordes
+                }
+    
+                this.barra.setAttribute("y", this.posicionY);
+            }, 30);
+        */
+
     }
+  
 
 
 }
-
-

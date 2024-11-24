@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1c355e;
+    letter-spacing: 5px;
+    font-weight: 800;
+}
+
+input[type="text"] {
+    width: 100%;
+    max-width: 380px;
+    padding: 0.5rem 1rem;
+    border: 2px solid #3f87f3;
+    border-radius: 5px;    
+    font-size: 1rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="button"] {
+    background-color: #A5D5F9;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+input[type="button"]:hover {
+    background-color: #598cc3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;    
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0.2rem;
+    font-size: 1rem;
+}
+
+button.editar {
+    color: #3ac47d;
+    margin-right: 0.5rem;
+}
+
+button.borrar {
+    color: #e74c3c;
+}
+
+button.editar:hover {
+    color: #2a965d;
+}
+
+button.borrar:hover {
+    color: #c0392b;
+}
+
+#form {
+    width: 100%;
+}
+
+#clear {
+    color: #e74c3c;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+#clear:hover {
+    color: #c0392b;
+}
+
+#container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    
+}
