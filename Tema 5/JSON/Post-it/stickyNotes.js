@@ -11,7 +11,6 @@ window.onload = () => {
     construirTitulo();
     construirRegistrar();
 
- 
     rellenarNotasEnPantalla(); 
 
     let crearNota = document.getElementById("boton");
@@ -26,13 +25,11 @@ function construirTitulo() {
     document.getElementById("container").appendChild(miTitulo);
 }
 
-// Construye el formulario principal
+
 function construirRegistrar() {
 
     let form = document.createElement("div");
     form.id = "form";
-    
-    
 
     let inputBoton = document.createElement("input");
     inputBoton.type = "button";
@@ -46,48 +43,56 @@ function construirRegistrar() {
 
 
 function construirNota() {
-    let idUnico = generarIdUnico("nota");
+
+    let idUnico = generarIdUnico();
 
     let nuevaNota = document.createElement("div");
     nuevaNota.className = "nota";
-    nuevaNota.dataset.id = idUnico; // Asignar ID único
-    nuevaNota.style.width = "200px";
-    nuevaNota.style.height = "200px";
-    nuevaNota.style.backgroundColor = "yellow";
+    nuevaNota.dataset.id = idUnico;
+    nuevaNota.dataset.time = Date.now(); 
+    nuevaNota.style.width = "300px";
+    nuevaNota.style.height = "300px";
+    nuevaNota.style.backgroundColor = "#FEF3B5";
     nuevaNota.style.position = "absolute";
     nuevaNota.style.left = posicionNuevaNota(document.querySelector("body").offsetWidth);
     nuevaNota.style.top = posicionNuevaNota(document.querySelector("body").offsetHeight);
     nuevaNota.style.cursor = "grab";
     nuevaNota.style.padding = "10px";
     nuevaNota.style.boxSizing = "border-box";
+    nuevaNota.style.borderRadius = "15px";
 
-    // Crear inputs dentro de la nota
+
+    
     let tituloInput = document.createElement("input");
     tituloInput.type = "text";
     tituloInput.placeholder = "Título";
     tituloInput.className = "titulo";
+    tituloInput.style.width = "80%";
+    tituloInput.style.marginBottom = "10px";
 
     let contenidoInput = document.createElement("textarea");
     contenidoInput.placeholder = "Contenido";
+    contenidoInput.style.width = "90%";
+    contenidoInput.style.height = "40%";
     contenidoInput.className = "contenido";
 
     let fechaInput = document.createElement("input");
     fechaInput.type = "date";
     fechaInput.className = "fecha";
 
-    // Botón Guardar
+    
     let guardarBoton = document.createElement("button");
     guardarBoton.textContent = "Guardar";
     guardarBoton.className = "guardar";
     guardarBoton.addEventListener("click", () => guardarNota(nuevaNota));
 
-    // Botón Borrar
+    
     let borrarBoton = document.createElement("button");
     borrarBoton.textContent = "Borrar";
     borrarBoton.className = "borrar";
     borrarBoton.addEventListener("click", () => borrarNota(nuevaNota));
 
-    // Agregar elementos a la nota
+    
     nuevaNota.appendChild(tituloInput);
     nuevaNota.appendChild(contenidoInput);
     nuevaNota.appendChild(fechaInput);
@@ -102,14 +107,14 @@ function construirNota() {
 
 
 
-function posicionNuevaNota(pos){
+function posicionNuevaNota(limite){
 
-        pos = Math.floor(Math.random() * (pos -0) + 0);
+        limite = Math.floor(Math.random() * (limite ));
 
-        return pos+"px";
+        return limite+"px";
 }
 
-// Agregar funcionalidad de movimiento a las notas
+
 function agregarMovimiento(nota) {
 
     nota.addEventListener("mousedown", (e) => {
@@ -132,6 +137,7 @@ function agregarMovimiento(nota) {
     });
 
     document.addEventListener("mouseup", () => {
+        
         if (notaEnMovimiento) {
 
             notaEnMovimiento.style.cursor = "grab";
@@ -142,10 +148,12 @@ function agregarMovimiento(nota) {
 
 
 function guardarNota(nota) {
-    let id = nota.dataset.id;
+
     let titulo = nota.querySelector(".titulo").value;
+    let id = nota.dataset.id + titulo;
     let contenido = nota.querySelector(".contenido").value;
     let fecha = nota.querySelector(".fecha").value;
+    let tiempo = Date.now();
 
     let notaObjeto = {
         id,
@@ -154,34 +162,46 @@ function guardarNota(nota) {
         fecha,
         x: nota.style.left,
         y: nota.style.top,
+        tiempo,
     };
 
-    // Buscar y actualizar si existe, o añadir si no
+
+   
     let index = NotasEnStorage.findIndex((n) => n.id === id);
+
     if (index > -1) {
+        //let id = NotasEnStorage[index].id;
+        //NotasEnStorage.remove(index);
         NotasEnStorage[index] = notaObjeto;
+        //borrarNota(id);
+
     } else {
         NotasEnStorage.push(notaObjeto);
     }
 
+
+
     localStorage.setItem("NotasEnStorage", JSON.stringify(NotasEnStorage));
+    nota.remove();
     alert("Nota guardada");
 }
 
 
 function rellenarNotasEnPantalla() {
+
     let datosLocales = localStorage.getItem("NotasEnStorage");
 
     if (datosLocales) {
         NotasEnStorage = JSON.parse(datosLocales);
 
         NotasEnStorage.forEach((notaData) => {
+
             let nuevaNota = document.createElement("div");
             nuevaNota.className = "nota";
-            nuevaNota.dataset.id = notaData.id; // Recuperar ID único
-            nuevaNota.style.width = "200px";
-            nuevaNota.style.height = "200px";
-            nuevaNota.style.backgroundColor = "yellow";
+            nuevaNota.dataset.id = notaData.id; 
+            nuevaNota.style.width = "300px";
+            nuevaNota.style.height = "300px";
+            nuevaNota.style.backgroundColor = "#FEF3B5";
             nuevaNota.style.position = "absolute";
             nuevaNota.style.left = notaData.x;
             nuevaNota.style.top = notaData.y;
@@ -189,13 +209,20 @@ function rellenarNotasEnPantalla() {
             nuevaNota.style.padding = "10px";
             nuevaNota.style.boxSizing = "border-box";
 
-            // Inputs con datos recuperados
-            let tituloInput = document.createElement("input");
-            tituloInput.type = "text";
-            tituloInput.value = notaData.titulo;
+            
+            let tituloInput = document.createElement("label");
+            tituloInput.style.width = "80%";
+            tituloInput.style.padding = "100px";
+            tituloInput.innerHTML = notaData.titulo;
+            tituloInput.style.fontSize = "25px";
+            tituloInput.style.textAlign = "center";
+            tituloInput.style.fontWeight = "bold";
             tituloInput.className = "titulo";
 
             let contenidoInput = document.createElement("textarea");
+            contenidoInput.style.width = "90%";
+            contenidoInput.style.height = "40%";
+            contenidoInput.style.fontSize = "17px";
             contenidoInput.value = notaData.contenido;
             contenidoInput.className = "contenido";
 
@@ -204,19 +231,19 @@ function rellenarNotasEnPantalla() {
             fechaInput.value = notaData.fecha;
             fechaInput.className = "fecha";
 
-            // Botón Guardar
+            
             let guardarBoton = document.createElement("button");
             guardarBoton.textContent = "Guardar";
             guardarBoton.className = "guardar";
             guardarBoton.addEventListener("click", () => guardarNota(nuevaNota));
 
-            // Botón Borrar
+            
             let borrarBoton = document.createElement("button");
             borrarBoton.textContent = "Borrar";
             borrarBoton.className = "borrar";
             borrarBoton.addEventListener("click", () => borrarNota(nuevaNota));
 
-            // Agregar elementos a la nota
+            
             nuevaNota.appendChild(tituloInput);
             nuevaNota.appendChild(contenidoInput);
             nuevaNota.appendChild(fechaInput);
@@ -231,33 +258,20 @@ function rellenarNotasEnPantalla() {
 }
 
 
-function generarIdUnico(titulo) {
-    const idAleatorio = Math.floor(Math.random() * 100) + 1;  // Número aleatorio entre 1 y 100
+function generarIdUnico() {
+    const idAleatorio = Math.floor(Math.random() * 100) + 1;  
 
-    return idAleatorio + "_" + titulo;  // ID único con el formato 'número_titulo'
+    return idAleatorio + "_"; // + titulo;  
 }
 
 function borrarNota(nota) {
+
     let id = nota.dataset.id;
 
-    // Filtrar la nota por ID en el array
     NotasEnStorage = NotasEnStorage.filter((n) => n.id !== id);
     localStorage.setItem("NotasEnStorage", JSON.stringify(NotasEnStorage));
 
-    // Eliminar la nota del DOM
     nota.remove();
     alert("Nota eliminada");
 }
 
-// Función para modificar una nota usando su ID único
-function modificarNota(idUnico) {
-    const nota = document.getElementById(idUnico);
-    if (nota) {
-        // En este caso, se elimina la nota para crear una nueva con modificaciones
-        const nuevoTitulo = prompt("Introduce el nuevo título para la nota:");
-        if (nuevoTitulo) {
-            borrarNota(idUnico);  // Primero se borra la nota actual
-            construirNota(nuevoTitulo);  // Se crea una nueva con el nuevo título
-        }
-    }
-}

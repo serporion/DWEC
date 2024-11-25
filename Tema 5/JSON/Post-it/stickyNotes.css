@@ -43,24 +43,7 @@ input[type="button"]:hover {
     background-color: #598cc3;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 1.5rem;
-    width: 100%;
-    max-width: 400px;
-}
 
-li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;    
-    padding: 0.5rem 1rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-    
-}
 
 button {
     border: none;
@@ -70,47 +53,18 @@ button {
     font-size: 1rem;
 }
 
-button.editar {
-    color: #3ac47d;
-    margin-right: 0.5rem;
-}
-
-button.borrar {
-    color: #e74c3c;
-}
-
-button.editar:hover {
-    color: #2a965d;
-}
-
-button.borrar:hover {
-    color: #c0392b;
-}
-
-#form {
-    width: 100%;
-}
-
-#clear {
-    color: #e74c3c;
-    background: none;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 1rem;
-}
-
-#clear:hover {
-    color: #c0392b;
-}
 
 #container {
+    position: absolute;
+    top: 6rem;
+    left: 45%;
+    transform: translate(-50%, -50%);
     background-color: #ffffff;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 90%;
-    max-width: 500px;
+    background-color: #FEF3B5;
+   
     
 }
+

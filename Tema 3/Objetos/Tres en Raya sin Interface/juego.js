@@ -6,6 +6,25 @@
 //class Juego extends tresenraya.Tablero {
 
 
+window.onload = () => {
+
+    let jugadorA = "Pedro";
+    let jugadorB = "Luis";
+
+    let tableroJugada = new Tablero();
+
+    let juego1 = new Juego(jugadorA, jugadorB, tableroJugada);
+
+
+   
+
+    juego1.presentar();
+
+    juego1.jugar();
+
+}
+
+
     class Tablero {
 
         static #DIMENSIONES = 3;
@@ -116,11 +135,11 @@ class Juego extends Tablero {
                 if (jugadorTurno%2 != 0) {                
 
                     console.log(`Jugador: ${this.jugador1}`);
-                    marcar(combinacionesX, equis);
+                    this.marcar(combinacionesX, equis);
 
                 }else if (this.jugadorTurno%2 == 0) {
                     console.log(`Jugador: ${this.jugador1}`);
-                    marcar(combinacionesO, ceros);
+                    this.marcar(combinacionesO, ceros);
                 }
 
                 this.tableroJugar.verTablero();
@@ -187,20 +206,3 @@ class Juego extends Tablero {
 
 
 
-window.onload = () => {
-
-    let jugadorA = "Pedro";
-    let jugadorB = "Luis";
-
-    let tableroJugada = new Tablero();
-
-    let juego1 = new Juego(jugadorA, jugadorB, tableroJugada);
-
-
-   
-
-    juego1.presentar();
-
-    juego1.jugar();
-
-}
