@@ -19,9 +19,10 @@ window.onload = () => {
 };
 
 
+
 function construirTitulo() {
     let miTitulo = document.createElement("h1");
-    miTitulo.innerText = "Notas Interactivas";
+    miTitulo.innerText = "Crea tu nota";
     document.getElementById("container").appendChild(miTitulo);
 }
 
@@ -41,68 +42,88 @@ function construirRegistrar() {
     document.getElementById("container").appendChild(form);
 }
 
+function rellenarNotasEnPantalla() {
+    let datosLocales = localStorage.getItem("NotasEnStorage");
 
-function construirNota() {
+    if (datosLocales) {
+        NotasEnStorage = JSON.parse(datosLocales);
 
-    let idUnico = generarIdUnico();
+        NotasEnStorage.forEach((notaData) => {
+            let nuevaNota = document.createElement("div");
+            nuevaNota.className = "nota";
+            nuevaNota.dataset.id = notaData.id;
+            nuevaNota.dataset.time = notaData.tiempo; // Recuperar tiempo
+            nuevaNota.style.width = "360px";
+            nuevaNota.style.height = "380px";
+            nuevaNota.style.backgroundColor = "#FEF3B5";
+            nuevaNota.style.position = "absolute";
+            nuevaNota.style.left = notaData.x;
+            nuevaNota.style.top = notaData.y;
+            nuevaNota.style.cursor = "grab";
+            nuevaNota.style.padding = "10px";
+            nuevaNota.style.boxSizing = "border-box";
+            nuevaNota.style.borderRadius = "15px";
 
-    let nuevaNota = document.createElement("div");
-    nuevaNota.className = "nota";
-    nuevaNota.dataset.id = idUnico;
-    nuevaNota.dataset.time = Date.now(); 
-    nuevaNota.style.width = "300px";
-    nuevaNota.style.height = "300px";
-    nuevaNota.style.backgroundColor = "#FEF3B5";
-    nuevaNota.style.position = "absolute";
-    nuevaNota.style.left = posicionNuevaNota(document.querySelector("body").offsetWidth);
-    nuevaNota.style.top = posicionNuevaNota(document.querySelector("body").offsetHeight);
-    nuevaNota.style.cursor = "grab";
-    nuevaNota.style.padding = "10px";
-    nuevaNota.style.boxSizing = "border-box";
-    nuevaNota.style.borderRadius = "15px";
+            let tituloInput = document.createElement("label");
+            tituloInput.style.width = "98%";
+            tituloInput.style.padding = "10px";
+            tituloInput.innerHTML = notaData.titulo;
+            tituloInput.style.fontSize = "23px";
+            tituloInput.style.fontWeight = "bold";
+            tituloInput.id = "titulo";
+
+            let contenidoInput = document.createElement("textarea");
+            contenidoInput.style.width = "98%";
+            contenidoInput.style.height = "40%";
+            contenidoInput.style.fontSize = "17px";
+            contenidoInput.value = notaData.contenido;
+            contenidoInput.id = "contenido";
+
+            let fechaInput = document.createElement("input");
+            fechaInput.type = "date";
+            fechaInput.value = notaData.fecha;
+            fechaInput.id = "fecha";
+            fechaInput.style.fontSize = "17px";
+            
+            let tiempoTranscurridoLabel = document.createElement("label");
+            tiempoTranscurridoLabel.style.display = "block";
+            tiempoTranscurridoLabel.style.marginTop = "10px";
+            tiempoTranscurridoLabel.style.fontSize = "14px";
+            tiempoTranscurridoLabel.style.color = "#555";
+            tiempoTranscurridoLabel.textContent = calcularTiempoTranscurrido(notaData.tiempo);
+        
+            
+           
+            let guardarBoton = document.createElement("button");
+            guardarBoton.textContent = "Guardar";
+            guardarBoton.addEventListener("click", () => guardarNota(nuevaNota));
+
+            let borrarBoton = document.createElement("button");
+            borrarBoton.textContent = "Borrar";
+            borrarBoton.addEventListener("click", () => borrarNota(nuevaNota));
 
 
-    
-    let tituloInput = document.createElement("input");
-    tituloInput.type = "text";
-    tituloInput.placeholder = "Título";
-    tituloInput.className = "titulo";
-    tituloInput.style.width = "80%";
-    tituloInput.style.marginBottom = "10px";
+            nuevaNota.appendChild(tituloInput);
+            nuevaNota.appendChild(contenidoInput);
+            nuevaNota.appendChild(fechaInput);
+            nuevaNota.appendChild(tiempoTranscurridoLabel);
+            nuevaNota.appendChild(guardarBoton);
+            nuevaNota.appendChild(borrarBoton);
 
-    let contenidoInput = document.createElement("textarea");
-    contenidoInput.placeholder = "Contenido";
-    contenidoInput.style.width = "90%";
-    contenidoInput.style.height = "40%";
-    contenidoInput.className = "contenido";
+            document.getElementById("contenedor").appendChild(nuevaNota);
 
-    let fechaInput = document.createElement("input");
-    fechaInput.type = "date";
-    fechaInput.className = "fecha";
 
-    
-    let guardarBoton = document.createElement("button");
-    guardarBoton.textContent = "Guardar";
-    guardarBoton.className = "guardar";
-    guardarBoton.addEventListener("click", () => guardarNota(nuevaNota));
+            setInterval(() => {
+                tiempoTranscurridoLabel.textContent = calcularTiempoTranscurrido(notaData.tiempo);
+            }, 60000);
 
-    
-    let borrarBoton = document.createElement("button");
-    borrarBoton.textContent = "Borrar";
-    borrarBoton.className = "borrar";
-    borrarBoton.addEventListener("click", () => borrarNota(nuevaNota));
 
-    
-    nuevaNota.appendChild(tituloInput);
-    nuevaNota.appendChild(contenidoInput);
-    nuevaNota.appendChild(fechaInput);
-    nuevaNota.appendChild(guardarBoton);
-    nuevaNota.appendChild(borrarBoton);
+            agregarMovimiento(nuevaNota);
 
-    document.getElementById("contenedor").appendChild(nuevaNota);
-
-    agregarMovimiento(nuevaNota);
+        });
+    }
 }
+
 
 
 
@@ -148,12 +169,40 @@ function agregarMovimiento(nota) {
 
 
 function guardarNota(nota) {
+    
+    let paso = true;
 
-    let titulo = nota.querySelector(".titulo").value;
+    let idBuscar = nota.dataset.id;
+
+    let titulo;
+    
+    let index = NotasEnStorage.findIndex((nota) => nota.id === idBuscar );
+    //let index = NotasEnStorage.findIndex((n) => n.id === id)
+
+    if (index > -1) {
+
+        titulo = document.getElementById("titulo").innerHTML; 
+       
+    }else {
+      
+        titulo = document.getElementById("titulo").value;
+        paso = false;     
+
+    }    
+
     let id = nota.dataset.id + titulo;
-    let contenido = nota.querySelector(".contenido").value;
-    let fecha = nota.querySelector(".fecha").value;
+    let contenido = document.getElementById("contenido").value;
+    let fecha = document.getElementById("fecha").value;
     let tiempo = Date.now();
+
+    console.log(document.getElementById('titulo').value + " a " + document.getElementById('contenido').innerHTML + " b " + document.getElementById('fecha').value);
+
+    if (titulo == "" || contenido == "" || fecha == "") {
+
+        alert("Los campos no pueden estar vacios");
+        
+        
+    }else {
 
     let notaObjeto = {
         id,
@@ -166,102 +215,30 @@ function guardarNota(nota) {
     };
 
 
-   
-    let index = NotasEnStorage.findIndex((n) => n.id === id);
+    if (paso)  {
 
-    if (index > -1) {
-        //let id = NotasEnStorage[index].id;
-        //NotasEnStorage.remove(index);
         NotasEnStorage[index] = notaObjeto;
-        //borrarNota(id);
 
-    } else {
+    }else {
+        
         NotasEnStorage.push(notaObjeto);
     }
-
 
 
     localStorage.setItem("NotasEnStorage", JSON.stringify(NotasEnStorage));
     nota.remove();
     alert("Nota guardada");
 }
-
-
-function rellenarNotasEnPantalla() {
-
-    let datosLocales = localStorage.getItem("NotasEnStorage");
-
-    if (datosLocales) {
-        NotasEnStorage = JSON.parse(datosLocales);
-
-        NotasEnStorage.forEach((notaData) => {
-
-            let nuevaNota = document.createElement("div");
-            nuevaNota.className = "nota";
-            nuevaNota.dataset.id = notaData.id; 
-            nuevaNota.style.width = "300px";
-            nuevaNota.style.height = "300px";
-            nuevaNota.style.backgroundColor = "#FEF3B5";
-            nuevaNota.style.position = "absolute";
-            nuevaNota.style.left = notaData.x;
-            nuevaNota.style.top = notaData.y;
-            nuevaNota.style.cursor = "grab";
-            nuevaNota.style.padding = "10px";
-            nuevaNota.style.boxSizing = "border-box";
-
-            
-            let tituloInput = document.createElement("label");
-            tituloInput.style.width = "80%";
-            tituloInput.style.padding = "100px";
-            tituloInput.innerHTML = notaData.titulo;
-            tituloInput.style.fontSize = "25px";
-            tituloInput.style.textAlign = "center";
-            tituloInput.style.fontWeight = "bold";
-            tituloInput.className = "titulo";
-
-            let contenidoInput = document.createElement("textarea");
-            contenidoInput.style.width = "90%";
-            contenidoInput.style.height = "40%";
-            contenidoInput.style.fontSize = "17px";
-            contenidoInput.value = notaData.contenido;
-            contenidoInput.className = "contenido";
-
-            let fechaInput = document.createElement("input");
-            fechaInput.type = "date";
-            fechaInput.value = notaData.fecha;
-            fechaInput.className = "fecha";
-
-            
-            let guardarBoton = document.createElement("button");
-            guardarBoton.textContent = "Guardar";
-            guardarBoton.className = "guardar";
-            guardarBoton.addEventListener("click", () => guardarNota(nuevaNota));
-
-            
-            let borrarBoton = document.createElement("button");
-            borrarBoton.textContent = "Borrar";
-            borrarBoton.className = "borrar";
-            borrarBoton.addEventListener("click", () => borrarNota(nuevaNota));
-
-            
-            nuevaNota.appendChild(tituloInput);
-            nuevaNota.appendChild(contenidoInput);
-            nuevaNota.appendChild(fechaInput);
-            nuevaNota.appendChild(guardarBoton);
-            nuevaNota.appendChild(borrarBoton);
-
-            document.getElementById("contenedor").appendChild(nuevaNota);
-
-            agregarMovimiento(nuevaNota);
-        });
-    }
 }
+
+
+
 
 
 function generarIdUnico() {
     const idAleatorio = Math.floor(Math.random() * 100) + 1;  
 
-    return idAleatorio + "_"; // + titulo;  
+    return idAleatorio + "_"; 
 }
 
 function borrarNota(nota) {
@@ -275,3 +252,84 @@ function borrarNota(nota) {
     alert("Nota eliminada");
 }
 
+
+
+function construirNota() {
+    let idUnico = generarIdUnico();
+
+    let nuevaNota = document.createElement("div");
+    nuevaNota.className = "nota";
+    nuevaNota.dataset.id = idUnico;
+    nuevaNota.dataset.time = Date.now(); 
+    nuevaNota.style.width = "360px";
+    nuevaNota.style.height = "380px";
+    nuevaNota.style.backgroundColor = "#FEF3B5";
+    nuevaNota.style.position = "absolute";
+    nuevaNota.style.left = posicionNuevaNota(document.querySelector("body").offsetWidth);
+    nuevaNota.style.top = posicionNuevaNota(document.querySelector("body").offsetHeight);
+    nuevaNota.style.cursor = "grab";
+    nuevaNota.style.padding = "10px";
+    nuevaNota.style.boxSizing = "border-box";
+    nuevaNota.style.borderRadius = "15px";
+
+    let tituloInput = document.createElement("input");
+    tituloInput.type = "text";
+    tituloInput.placeholder = "Título";
+    tituloInput.id = "titulo";
+    tituloInput.style.width = "90%";
+    tituloInput.style.marginBottom = "10px";
+    tituloInput.style.fontSize = "20px";
+
+    let contenidoInput = document.createElement("textarea");
+    contenidoInput.placeholder = "Contenido";
+    contenidoInput.style.width = "98%";
+    contenidoInput.style.height = "40%";
+    contenidoInput.id = "contenido";
+    contenidoInput.style.fontSize = "17px";
+
+    let fechaInput = document.createElement("input");
+    fechaInput.type = "date";
+    fechaInput.id = "fecha";
+    fechaInput.style.fontSize = "17px";
+
+
+    let tiempoTranscurridoLabel = document.createElement("label");
+    tiempoTranscurridoLabel.style.display = "block";
+    tiempoTranscurridoLabel.style.marginTop = "10px";
+    tiempoTranscurridoLabel.style.fontSize = "14px";
+    tiempoTranscurridoLabel.style.color = "#555";
+    tiempoTranscurridoLabel.textContent = calcularTiempoTranscurrido(Date.now());
+
+    
+    setInterval(() => {
+        tiempoTranscurridoLabel.textContent = calcularTiempoTranscurrido(nuevaNota.dataset.time);
+    }, 60000);
+
+    let guardarBoton = document.createElement("button");
+    guardarBoton.textContent = "Guardar";
+    guardarBoton.addEventListener("click", () => guardarNota(nuevaNota));
+
+    let borrarBoton = document.createElement("button");
+    borrarBoton.textContent = "Borrar";
+    borrarBoton.addEventListener("click", () => borrarNota(nuevaNota));
+
+    nuevaNota.appendChild(tituloInput);
+    nuevaNota.appendChild(contenidoInput);
+    nuevaNota.appendChild(fechaInput);
+    nuevaNota.appendChild(tiempoTranscurridoLabel);
+    nuevaNota.appendChild(guardarBoton);
+    nuevaNota.appendChild(borrarBoton);
+
+    document.getElementById("contenedor").appendChild(nuevaNota);
+
+    agregarMovimiento(nuevaNota);
+}
+
+function calcularTiempoTranscurrido(tiempo) {
+
+    let ahora = Date.now();
+    let diferencia = ahora - tiempo; 
+    let minutos = Math.floor(diferencia / 60000); 
+
+    return  minutos > 1 || minutos === 0 ? minutos + " minutos han transcurrido" : "minuto ha transcurrido";
+}
