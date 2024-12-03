@@ -1,0 +1,47 @@
+<style>
+        body {
+            width: 1000px;
+            height: 1000px; /* Hacemos el body un poco más alto para hacer scroll */
+            background-color: #f0f0f0;
+            
+        }
+
+        #contenedor {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            list-style: none;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            
+        }
+
+        #peliculas {
+            display: flex;                        
+            width: 600px;            
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        .contenedorPeliculas {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 5px;
+            margin: 5px;    
+            
+        }
+
+
+        li {
+            display: inline;
+        }
+
+        .imagen {
+            width: 30px;
+        }
+
+    </style>

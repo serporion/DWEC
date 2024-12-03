@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandes Películas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="peliculas.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      
+    </script>
+
+
+</head>
+<body>
+
+    <nav id="navegacion">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li id="informe">Informe
+                <ul class="submenu">
+                    <li id="peliculasValoradas">Películas más valoradas por imdbRating</li>
+                    <li id="peliculasRecaudacion">Películas con mayor recaudación</li>
+                    <li id="peliculasVotadas">Películas más votadas </li>
+                </ul>
+            </li>
+            <li id="contacto">Contacto</li> 
+        </ul>
+        
+    </nav>
+
+    <header>
+        <h1 id="">Tu Guía de Películas Imprescindibles</h1>
+        <h2>Disfruta de una buena película o serie</h2>
+
+        <div id="busqueda">
+            <input type="text" id="cajaTexto" placeholder="Descubre tu película o serie">
+            <select id="seleccion">
+                <option value="movie">Películas</option>
+                <option value="series">Series</option>
+            </select>
+            <input id="boton" type="button" value="Búsqueda" >
+           
+            
+        </div>
+        <label for="error" id="error"></label>
+        <span id="span"></span>
+        <span id="cargando"></span>
+
+    </header>
+    
+
+    <div id="creaContacto"></div>
+
+    <h2 id="numPeliculas"></h2>
+    <label id="idJson"></label>
+
+    <main id="main">
+
+        <div id="contenedorPeliculas">
+    
+        <button id="botonFlotante" title="Volver arriba">↑</button>
+        
+
+        </div>
+
+        <div id="overlay"></div>
+        
+        <div id="construirInformacion">
+            <div id="imagenInforme"></div>
+            <div id="imagenPelicula">
+                <img id="imagenPeliculaIndividual">
+            </div>
+            <div id="datosInforme"></div>
+            <div id="datosPelicula">
+                <p id="tituloPelicula"></p>
+                <div id="datosEspecificos">
+                    <p id="directorPelicula"></p>
+                    <p id="actoresPelicula"></p>
+                    <p id="duracionPelicula"></p>
+                    <p id="anioPelicula"></p>                        
+                </div>
+                
+                <p id="plotPelicula" ></p>
+                <div id="imdb">
+                    <p id="imdbRating"></p>
+                    <p id="imdbVotes"></p>
+                </div>
+                
+                <div id="valoraciones">
+                    
+                    
+                </div>
+            </div>
+
+            <div id="cerrar">
+                <div>
+                    <img alt="cerrarDiv"  src="images/close-icon.png" id="cerrarDiv">
+                </div>
+            </div>
+            
+        </div>        
+    </main>
+
+    <footer>
+        <p>2024 - Todos los derechos reservados</p>
+    </footer>
+   
+   
+</body>
+</html>

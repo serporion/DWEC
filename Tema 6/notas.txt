@@ -1,0 +1,21 @@
+{ "notas" : [   
+  {
+    "id": "80_Nota 1",
+    "titulo": "Nota 1",
+    "contenido": "Primera Nota",
+    "fecha": "2024-11-11",
+    "x": "303px",
+    "y": "660px",
+    "tiempo": 1732609269603
+  },
+  {
+    "id": "6_Nota 1",
+    "titulo": "Nota 2",
+    "contenido": "Contenido de la segunda nota",
+    "fecha": "2024-11-12",
+    "x": "400px",
+    "y": "700px",
+    "tiempo": 1732709269603
+  }
+]
+}

@@ -1,67 +1,97 @@
 <html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
+
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart);
 
 
+
+
+    function drawChart() {
       
+      var data = google.visualization.arrayToDataTable([
+        ['Año', 'PP', 'PSOE', 'Vox', 'SUMAR', 'ERC', 'JUNTS', 'EH Bildu', 'EAJ-PNV', 'BNG', 'CCe', 'UPN'],
+        ['2023', 137, 121, 33, 31, 7, 7, 6, 5, 1, 1, 1]
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Año', 'PP', 'PSOE', 'Vox','SUMAR','ERC','JUNTS','EH Bildu','EAJ-PNV','BNG', 'CCe','UPN'],
-          ['2023', 137,121, 33,31,7,7,6,5,1,1,1]
-          
-        ]);
+      ]);
 
-        var options = {
-          chart: {
-            title: 'Elecciones 2023 España',
-            subtitle: 'Resultados electorales divididos por Partidos Politicos',
-            bar: {groupWidth: "95%"},
-          },
-          bars: 'vertical' // Required for Material Bar Charts.
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-
-        google.visualization.events.addListener(data, 'select', selectHandler);
+      var options = {
+        chart: {
+          title: 'Elecciones 2023 España',
+          subtitle: 'Resultados electorales divididos por Partidos Politicos',
+          bar: { groupWidth: "10%" },
+        },
+        bars: 'vertical', // Required for Material Bar Charts.
 
         
-        
+        hAxis: {
+          title: 'Año',
+          gridlines: { count: 1 },  // Cambiar número de líneas en el eje horizontal
+          textStyle: { fontSize: 9, fontName: 'Arial', bold: true }
+        },
 
+        vAxis: {
+          title: 'Numero de Escaños',
+          gridlines: { color: '#e0e0e0' },  // Cambiar el color de las líneas de la cuadrícula
+          textStyle: { fontSize: 9, fontName: 'Arial' }
+        },
+
+        legend: {
+          position: 'top', // 'top', 'bottom', 'left', 'right'
+          alignment: 'start', // 'start', 'center', 'end'
+          textStyle: {
+            color: '#333', // Color del texto de la leyenda
+            fontSize: 9, // Tamaño de la fuente
+            fontName: 'Arial', // Nombre de la fuente
+            bold: true, // Establecer si el texto es negrita
+          }
+        },
+      };
+
+
+
+      var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+
+      google.visualization.events.addListener(data, 'select', selectHandler);
+
+
+
+
+    }
+
+    function selectHandler() {
+
+      console.log('entra');
+      var selection = data.getSelection();
+      var message = 'HOLA';
+
+      for (var i = 0; i < selection.length; i++) {
+        var item = selection[i];
+        if (item.row != null && item.column != null) {
+          var str = data.getFormattedValue(item.row, item.column);
+          message += '{row:' + item.row + ',column:' + item.column + '} = ' + str + '\n';
+        } else if (item.row != null) {
+          var str = data.getFormattedValue(item.row, 0);
+          message += '{row:' + item.row + ', column:none}; value (col 0) = ' + str + '\n';
+        } else if (item.column != null) {
+          var str = data.getFormattedValue(0, item.column);
+          message += '{row:none, column:' + item.column + '}; value (row 0) = ' + str + '\n';
+        }
       }
+      if (message == '') {
+        message = 'nothing';
+      }
+      alert('You selected ' + message);
+    }
+  </script>
+</head>
 
-      function selectHandler() {
+<body>
+  <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+</body>
 
-            console.log('entra');
-            var selection = data.getSelection();
-            var message = 'HOLA';
-
-            for (var i = 0; i < selection.length; i++) {
-                var item = selection[i];
-                if (item.row != null && item.column != null) {
-                var str = data.getFormattedValue(item.row, item.column);
-                message += '{row:' + item.row + ',column:' + item.column + '} = ' + str + '\n';
-                } else if (item.row != null) {
-                var str = data.getFormattedValue(item.row, 0);
-                message += '{row:' + item.row + ', column:none}; value (col 0) = ' + str + '\n';
-                } else if (item.column != null) {
-                var str = data.getFormattedValue(0, item.column);
-                message += '{row:none, column:' + item.column + '}; value (row 0) = ' + str + '\n';
-                }
-            }
-            if (message == '') {
-                message = 'nothing';
-            }
-            alert('You selected ' + message);
-            }
-    </script>
-  </head>
-  <body>
-    <div id="barchart_material" style="width: 900px; height: 500px;"></div>
-  </body>
 </html>
