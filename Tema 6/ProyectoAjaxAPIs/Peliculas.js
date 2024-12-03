@@ -286,7 +286,7 @@ function imagenPoster(pelicula) {
 
     span.innerHTML = "";
 
-    fetch("http://www.omdbapi.com/?apikey=1a3dcaad&type=" + seleccion + "&s=" + pelicula + "&page=" + pagina, { method: "GET" })
+    fetch("https://www.omdbapi.com/?apikey=1a3dcaad&type=" + seleccion + "&s=" + pelicula + "&page=" + pagina, { method: "GET" })
       .then((res) => res.json())
       .then((datosRecibidos) => {
 
@@ -316,27 +316,12 @@ function imagenPoster(pelicula) {
 
           Promise.all(detallesPromesas)
             .then(() => {
-              console.log("Array actualizado con detalles:", arrayPeliculas);
-
-
-              arrayPeliculas.forEach(pelicula => {
-
-                console.log(`Título: ${pelicula.Title}`);
-                console.log(`imdbRating: ${pelicula.imdbRating}`);
-                console.log(`imdbVotes: ${pelicula.imdbVotes}`);
-                console.log(`Recaudación: ${pelicula.boxOffice}`);
-              });
+              
             })
-            .catch(error => console.error("Error al obtener los detalles adicionales:", error));
-
-
-          console.log(arrayPeliculas + " es ahora de");
-
-
+                      
           document.getElementById("cargando").classList.remove("cargando");
 
-          console.log(datosRecibidos);
-
+          
           let titulo;
           let imagen;
           let img;
@@ -428,7 +413,7 @@ function detalles(e) {
 
   document.getElementById("cargando").classList.add("cargando")
 
-  let url = "http://www.omdbapi.com/?apikey=1a3dcaad&i=" + e.target.dataSet;
+  let url = "https://www.omdbapi.com/?apikey=1a3dcaad&i=" + e.target.dataSet;
 
 
 
@@ -604,9 +589,7 @@ function creacionInforme(opcion) {
       peliculasFiltradas = arrayPeliculas
         .filter(pelicula => pelicula.imdbRating !== "N/A")  // De cabeza!!!!
         .sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating))
-        .slice(0, NUMEROPELICULASINFORMES);
-
-      console.log(peliculasFiltradas);
+        .slice(0, NUMEROPELICULASINFORMES);      
 
     } else if (opcion === "votadas") {
 
@@ -838,7 +821,7 @@ function detallesInforme(id) {
 
   document.getElementById("cargando").classList.add("cargando");
 
-  let url = "http://www.omdbapi.com/?apikey=1a3dcaad&i=" + id + "&Plot=full";
+  let url = "https://www.omdbapi.com/?apikey=1a3dcaad&i=" + id + "&Plot=full";
 
   return fetch(url, { method: "GET" })
     .then((response) => response.json())
@@ -857,7 +840,6 @@ function detallesInforme(id) {
       return {};
     })
     .catch(error => {
-      console.error("Error al obtener detalles de la película:", error);
 
       document.getElementById("cargando").classList.remove("cargando")
 
