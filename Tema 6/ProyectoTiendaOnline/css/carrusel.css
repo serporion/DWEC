@@ -1,0 +1,70 @@
+#carrusel {
+  grid-column: 2 / 13;
+  grid-row: 4 / 5; /* El carrusel ocupa las filas 4 y 5 */
+  min-height: 20rem;  /* Puedes ajustar la altura según lo necesites */
+}
+
+
+
+#central {    
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column: 5 / 8;
+  align-items: center;
+  justify-items: center;
+  max-width: 70%;
+  /*gap: 3rem;*/
+}
+
+
+/*Contiene los 4 elementos descritos, la imagen, el nombre, la opinión y la fecha de la misma */
+#comun {
+  width: 40rem;
+  height: 50rem;
+  background-color: white;
+  display: grid;
+  grid-template-rows: minmax(100px, 4fr) 2fr 3fr 1fr;
+  border-radius: 20px;
+  padding: 2rem;
+  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+#divImagen-Categoria,
+img {
+    width: 100%;
+    height: auto;  /* Para que las imágenes no distorsionen su tamaño */
+    object-fit: cover;  /* Mantiene la proporción de la imagen sin distorsionarla */
+}
+
+.titulo {
+  text-align: center;
+  color: var(--blanco);
+}
+
+
+#carrusel-Nombre {
+  font-family: var(--fuenteParrafos);
+  font-size: var(--tamanoTitulo);
+}
+
+
+/*Botones mostrar-ocultar, anterior, posterior y cambio de temas */
+#boton-anterior,
+#boton-siguiente {
+  width: 4rem;
+  height: 4rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+
+.ocultar{
+  display: none;
+}

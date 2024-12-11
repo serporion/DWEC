@@ -1,0 +1,62 @@
+
+header {
+    grid-column: 1 / 13;  /* El header ocupa todas las columnas */
+    grid-row: 1 / 3;  /* El header ocupa las filas 1 y 2 */
+    background-image: url(../images/banner.webp);
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 40rem;  /* Ajusta la altura mínima, puede ser más pequeño que 30rem */
+    height: auto;  /* Asegura que la altura del header no sea fija y se adapte al contenido */
+}
+
+    
+
+.contenedor {
+    width: min(75%, 120rem);
+    margin: 0 auto;
+}
+
+
+#carrito {
+    color: var(--blanco);
+    font-size: 2.5rem;
+    
+}
+
+
+.barra{
+    padding-top: 4rem;
+    display: flex;
+        justify-content:space-between;
+        align-items: center;
+}
+
+
+
+.logo{
+    color: var(--blanco);
+}
+
+.logo__nombre{
+   font-weight: 400;
+}
+
+.logo__bold{
+    font-weight: 700;
+}
+
+.navegacion {
+    display: flex;
+    gap: 2rem;
+    justify-content: baseline;
+}
+
+
+.navegacion__enlace{
+    display: block;
+    line-height: 1.8;
+    text-align: center;
+    color: var(--blanco);
+}
+

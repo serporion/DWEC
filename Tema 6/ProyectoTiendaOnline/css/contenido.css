@@ -1,0 +1,46 @@
+
+#eslogan {
+    grid-column: 2 / 11;
+    grid-row: 3 / 4;  /* El eslogan ocupa las filas 3 y 4 */
+    text-align: center;
+    color: var(--blanco);
+    height: auto;  /* Evita que la altura del eslogan sea fija, se ajustará automáticamente al contenido */
+
+    display: flex;
+    justify-content: space-between ;
+    
+}
+
+#eslogan p {
+    
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--blanco);
+}
+
+#imagenEslogan {
+    width: 500px;
+    height: 30rem;
+    margin-right: 1rem;
+    object-fit: contain;
+    
+}
+
+#productos {
+    grid-column: 1 / 13;
+    grid-row: 5 / 6;  /* El eslogan ocupa las filas 3 y 4 */
+
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#producto-card{
+    display: flex;
+    
+}
+
+.imagenesProductos {
+    width: 200px;
+}

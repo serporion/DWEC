@@ -1,0 +1,116 @@
+@import url(header.css);
+@import url(contenido.css);
+@import url(carrusel.css);
+@import url(footer.css);
+
+:root {
+    --fuenteHeading: 'PT Sans', sans-serif;
+    --fuenteParrafos: 'Open Sans', sans-serif;
+    --grisClaro: #DFE9F3;
+    --primario: #784d3C;
+    --tamanoTitulo: calc(100% + 2vh);
+    --gris: #e1e1e1;
+    --blanco: #ffffff;
+    --negro: #000000;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    /* 1rem = 10px*/
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--negro) 100%);   
+    background-color: var(--negro);
+    font-family: var(--fuenteParrafos);
+    font-size: 1.5rem;
+    line-height: 2;
+    margin: 0 auto;
+    
+}
+
+#container {
+
+    
+    display: grid;
+    grid-template-columns: [container-start] 1fr [center-start] repeat(10, [col-start] minmax(min-content, 11rem) [col-end]) [center-end] 1fr [container-end];
+    grid-template-rows: 50vh repeat(8, min-content);
+    gap: 2rem;
+
+
+}
+
+/**Globales**/
+
+
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--fuenteHeading);
+    line-height: 1.2;
+    /*Si la fuente es muy grande, el interlineado será demasiado grande*/
+}
+
+h1 {
+    font-size: 4.8rem;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 3.2rem;
+}
+
+h4 {
+    font-size: 2.8rem;
+}
+
+
+/** Utilidades **/
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.centrar-texto {
+    text-align: center;
+}
+
+
+
+.boton {
+    display: block;
+    font-family: var(--fuenteHeading);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1rem 3rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    border: none;
+}
+
+
+
+.boton:hover {
+    cursor: pointer;
+}
+
