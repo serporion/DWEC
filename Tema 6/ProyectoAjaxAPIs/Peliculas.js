@@ -415,8 +415,6 @@ function detalles(e) {
 
   let url = "https://www.omdbapi.com/?apikey=1a3dcaad&i=" + e.target.dataSet;
 
-
-
   fetch(url + "&Plot=full", { method: "GET" })
     .then((res) => res.json())
     .then((datosRecibidos) => {
@@ -511,14 +509,11 @@ function detalles(e) {
           valoracionesDiv.appendChild(p);
         });
 
-
         datosPelicula.appendChild(valoracionesDiv);
-
 
         PeliculaIndividual.appendChild(imagenPelicula);
         PeliculaIndividual.appendChild(datosPelicula);
         PeliculaIndividual.appendChild(cerrar);
-
 
       }
     })
@@ -547,7 +542,6 @@ function cerrarDetalles() {
   //document.getElementById("construirInformacion").style.display = "none"; // Oculta el div construirInformacion.classList.add("ocultar"); //Cuidado. No lo hace.
 
 }
-
 
 /**
  * Genera un informe detallado basado en la opción seleccionada y lo muestra.

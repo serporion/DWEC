@@ -1,9 +1,9 @@
 #carrusel {
-  grid-column: 2 / 13;
+  grid-column: 2 / 12;
   grid-row: 4 / 5; /* El carrusel ocupa las filas 4 y 5 */
-  min-height: 20rem;  /* Puedes ajustar la altura según lo necesites */
+  min-height: 20rem;  
+  
 }
-
 
 
 #central {    
@@ -14,11 +14,17 @@
   align-items: center;
   justify-items: center;
   max-width: 70%;
-  /*gap: 3rem;*/
+  margin-bottom: 5rem;
+  
+}
+
+.imagen-central {
+  width: 32rem;
+  height: auto;
 }
 
 
-/*Contiene los 4 elementos descritos, la imagen, el nombre, la opinión y la fecha de la misma */
+/*Contiene 3 elementos, la imagen, el nombre, y el precio */
 #comun {
   width: 40rem;
   height: 50rem;
@@ -32,13 +38,16 @@
   flex-direction: column;
   align-items: center;
   gap: 4rem;
+  border-radius: 2rem;
+  background-image: url(../images/navidadeslogan.webp);
 }
 
 #divImagen-Categoria,
 img {
-    width: 100%;
-    height: auto;  /* Para que las imágenes no distorsionen su tamaño */
-    object-fit: cover;  /* Mantiene la proporción de la imagen sin distorsionarla */
+    border-radius: 2rem;
+    padding: 1rem;    
+    height: auto;  
+    object-fit: cover;
 }
 
 .titulo {
@@ -50,21 +59,25 @@ img {
 #carrusel-Nombre {
   font-family: var(--fuenteParrafos);
   font-size: var(--tamanoTitulo);
+  color: var(--blanco);
 }
 
 
-/*Botones mostrar-ocultar, anterior, posterior y cambio de temas */
+/* Botones anterior, posterior */
 #boton-anterior,
 #boton-siguiente {
-  width: 4rem;
-  height: 4rem;
-  border: none;
-  background: none;
+  width: 8rem;
+  height: 8rem;  
   cursor: pointer;
-  border-radius: 50px;
+  object-fit: cover;
+}
+
+#boton-anterior {
+  transform: rotate(-90deg);
+}
+
+#boton-siguiente {
+  transform: rotate(90deg);
 }
 
 
-.ocultar{
-  display: none;
-}

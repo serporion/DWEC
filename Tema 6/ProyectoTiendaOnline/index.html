@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Tiendazon</title>
     <meta name="description" content="Tienda online de todo">
-
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         rel="stylesheet">
@@ -23,9 +21,12 @@
 
 <body>
 
+    <!--Empieza el contenedor principal de toda la landin page-->
+
     <div id="container">
 
 
+        <!--Empieza el header-->
         <header class="header">
 
             <div class="contenedor">
@@ -36,7 +37,6 @@
                     <nav class="navegacion">
                         <a href="#" class="navegacion__enlace">Login</a>
                         <a href="#" class="navegacion__enlace">Contacto</a>
-                        <a href="#" class="navegacion__enlace">Carrito</a>
                         <i id="carrito" class="fas fa-shopping-cart"></i>
 
 
@@ -44,54 +44,64 @@
                 </div>
 
             </div>
-
-
+            <span id="cargando"></span>
+            <div id="notificacion" class="notificacion oculto">
+                <span id="mensaje-notificacion"></span>
+                <button id="cerrar-notificacion">×</button>
+            </div>
 
         </header>
 
+        <!--Termina el header-->
 
-
+        <!--Empieza el eslogan-->
         <section id="eslogan">
+
             <div id="imagenEslogan">
 
-                <img src="./images/baqueta.jpg" alt="Botón retroceso">
+                <img src="./images/imageneslogan.webp" alt="Imagen de navidad" id="imagenEslogan">
 
             </div>
-            <div>
+            <div id="textoEslogan">
+
                 <h2 class="no-margin">Encuentra lo que necesitas</h2>
-                <p class="no-margin">Preguntanos, tenemos de todo!!</p>
+                <p class="no-margin">Pregúntanos, tenemos de todo!!</p>
 
             </div>
 
         </section>
 
+        <!--Termina el eslogan-->
 
+        <!--Empieza el carrusel-->
         <section id="carrusel">
 
 
-            <h2 class="titulo">Seleccione por categorias</h2>
+            <h2 class="titulo">Categorías</h2>
 
             <div id="central">
 
                 <div>
 
-                    <img id="boton-anterior" src="./images/bretroceso.png" alt="Botón retroceso">
+                    <img id="boton-anterior" src="./images/christmas-tree.png" alt="Botón retroceso">
 
                 </div>
 
                 <div id="comun">
 
                     <div id="divImagen-Categoria">
-                        <img id="carrusel-imagen" class="ocultar" src="" alt="Imagen de la opinión">
+                        <img id="carrusel-imagen" class="ocultar" src="" alt="Imagen categoria">
                     </div>
-                    <div id="carrusel-Nombre"></div>
-                   
+                    <div id="carrusel-Nombre">
+
+                    </div>
+                                        
 
                 </div>
 
                 <div>
 
-                    <img id="boton-siguiente" src="./images/badelante.png" alt="Botón adelanto">
+                    <img id="boton-siguiente" src="./images/christmas-tree.png" alt="Botón adelanto">
                 </div>
 
             </div>
@@ -99,22 +109,86 @@
 
         </section>
 
+        <!--Termina el carrusel-->
 
+
+        <!--Empieza la sección de productos-->
         <section id="productos">
-            <h2>Productos</h2>
 
-            <div id="producto-card">
 
-                
-            </div>
+            <!--Empieza el article de la seleccion de 3 productos destacados-->
+            <article id="productos_card">
 
+                <h2>Productos Estrella</h2>
+
+                <div id="producto-card" class="card-container">
+
+                    
+                </div>
+
+
+            </article>
+
+            <!--Termina el article de la seleccion de 3 productos destacados-->
+            
+            <!--Empieza el article de la seleccion de ofrecimientos de nuestros productos-->
+            <article id="seleccion">
+                <h4>Nuestros Productos</h4>
+                <p>Tenemos una gran variedad de productos que te ofrecemos para que triunfes en estas navidades. Descubre nuestros precios y compara las mejores ofertas.</p>
+                <div class="redes-sociales">
+                    <a href="https://www.facebook.com/profile.php?id=100001237684317" target="_blank"
+                        class="social-icon facebook" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/oscar-delgado-huertas-23b53756/" target="_blank"
+                        class="social-icon linkedin" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/serporion" target="_blank" class="social-icon github" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="social-icon instagram"
+                        aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+
+            </article>
+            <!--Termina el article de la seleccion de ofrecimientos de nuestros productos-->
 
         </section>
 
+        <!--Termina la sección de productos-->
+
+        <!--Empieza la sección de Mostrar productos por categoría-->
+
+        <seccion id="muestraDiezProductos" class="ocultar" class="zindex">
+
+            <article id="productos_cardeCategoria">
+
+                <h2>Productos Estrella</h2>
+
+                <div id="producto-cardeCategoria" class="card-container">
+
+                    
+                </div>
+
+                
+            </article>
+
+            <input type="button" id="cargarMas" class="ocultar" value="Siguiente Pagina">
+
+        </seccion >
+
+        <!--Termina la sección de Mostrar productos por categoría-->
+
+        <div id="overlay"></div>
+
+        <!--Empieza la sección de detalle de cada producto-->
+        <div id="detalle"></div>
 
 
-
-
+        <!--Empieza la sección de pie de página-->
         <footer class="footer">
             <!-- Sección de Documentos -->
             <div class="documentos">
@@ -178,7 +252,11 @@
                 </a>
             </div>
         </footer>
-    </div>
+
+        <!--Acaba la sección del pie de página-->
+    </section>
+
+    <!--Acaba el contenedor principal-->
 
 </body>
 

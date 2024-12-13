@@ -1,0 +1,137 @@
+.detalle-producto {
+    position: relative;
+    display: grid;
+    grid-column: 2 / 12;
+    grid-row: 3 / 6;  
+    margin-top: 2rem;
+    width: 100%;
+    z-index: 1;
+    
+}
+
+
+.detalle-imagen {
+    display: flex;
+    height: auto;
+    object-fit: cover;
+    border-color: 2rem solid var(--rojo);
+}
+
+
+.detalle-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    flex: 1;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.detalle-imagen img {
+    max-width: 50%;
+    object-fit: cover;
+    
+}
+
+
+.detalle-precio {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.control-carrito{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;  
+    justify-content: flex-end;
+    height: 100%;
+
+}
+
+.cantidad-control {
+    display: flex;
+    align-items: center;
+    justify-content: left; 
+    gap: 1rem; 
+    margin-left: 4rem;
+}
+
+.cantidad-input {
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    font-size: 2rem; 
+    border: 2px solid #ccc;
+    border-radius: 8px; 
+    margin: 0 1rem;
+}
+
+.cantidad-control button {
+    width: 5rem; 
+    height: 5rem;
+    font-size: 2rem; 
+    border: none;
+    border-radius: 8px;
+    background-image: url(../images/navidadproducto.jpg);
+    object-fit: contain;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cantidad-control button:hover {
+    background-color: #0056b3; 
+}
+
+.botones-accion {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1.5rem; 
+    justify-content: center; 
+    padding-bottom: 1rem;
+    margin-left: 4rem;
+    font-size: 2rem;
+}
+
+.botones-accion button {
+    padding: 0.8rem 2rem; 
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-image: url(../images/navidadproducto.jpg);
+    background-color: var(--rojo);
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.botones-accion button:hover {
+    background-color: #b00;
+}
+
+
+.cerrar-detalle {
+    position: absolute;
+    top: 1rem; /* Espaciado desde arriba */
+    right: 1rem; /* Espaciado desde la derecha */
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    color: white;
+    background-color: #900; /* Mismo color que los otros botones */
+    border: none;
+    border-radius: 50%; /* Botón circular */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    z-index: 2; /* Asegura que esté sobre el resto de los elementos */
+}
+
+.cerrar-detalle:hover {
+    background-color: #b00; /* Efecto hover */
+}

@@ -1,16 +1,11 @@
-
 header {
     grid-column: 1 / 13;  /* El header ocupa todas las columnas */
-    grid-row: 1 / 3;  /* El header ocupa las filas 1 y 2 */
-    background-image: url(../images/banner.webp);
-    background-size: cover; 
+    grid-row: 1 / 2;  /* El header ocupa de las lineas 1 a 2 */
+    background-image: url(../images/imagenheader5.png);    
     background-repeat: no-repeat;
     background-position: center center;
-    min-height: 40rem;  /* Ajusta la altura mínima, puede ser más pequeño que 30rem */
-    height: auto;  /* Asegura que la altura del header no sea fija y se adapte al contenido */
-}
-
     
+}
 
 .contenedor {
     width: min(75%, 120rem);
@@ -24,14 +19,12 @@ header {
     
 }
 
-
 .barra{
     padding-top: 4rem;
     display: flex;
-        justify-content:space-between;
-        align-items: center;
+    justify-content:space-between;
+    align-items: center;
 }
-
 
 
 .logo{
@@ -48,10 +41,9 @@ header {
 
 .navegacion {
     display: flex;
-    gap: 2rem;
-    justify-content: baseline;
+    gap: 3rem;
+    font-size: 1.8rem;
 }
-
 
 .navegacion__enlace{
     display: block;
@@ -60,3 +52,16 @@ header {
     color: var(--blanco);
 }
 
+.cargando {
+    background-image: url(../images/cargando.gif);
+    background-size: 6rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    filter: invert(1);
+    font-size: 0;
+    border-radius: 50%;
+}

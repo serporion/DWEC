@@ -1,0 +1,69 @@
+
+#muestraDiezProductos {
+    grid-column: 2 / 12; /*Dejo espacio en los laterales */
+    grid-row: 5 / 6;  /* Sección productos ocupa las linas de la 5 a la 6 */
+    background-image: url(../images/navidadproducto.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: var(--blanco);
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 para productos_card y 1/3 para seleccion */
+    align-items: center; 
+    gap: 1rem; 
+    padding: 1rem;
+    z-index: 2;
+   
+}
+
+.construirProducto {
+    display: flex;
+}
+
+
+#productos_card_ListaDiez {
+    grid-column: 1; 
+    color: var(--blanco);
+}
+
+
+.nombreDiez {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--blanco);
+    white-space: normal; 
+    word-wrap: break-word; 
+    text-align: center; 
+    line-height: 1.2; 
+}
+
+/* Contenedor de la imagen */
+.imagenDiez-container {
+    width: 100%; 
+    height: 18rem; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    overflow: hidden; 
+    border-radius: 2rem;
+    z-index: 10;
+}
+
+/* Estilo de las imágenes */
+.imagenesDiez-productos {
+    width: 100%; 
+    object-fit: cover; 
+    min-width: 18rem;
+    max-width: 18rem;
+    border-radius: 2rem;
+}
+
+/* Precio del producto */
+.precioDiez {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--blanco);
+}
