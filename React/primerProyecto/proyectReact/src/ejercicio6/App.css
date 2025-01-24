@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+.eje6 {
+  text-align: left; 
+}
+
+.eje6 ul {
+ 
+  padding: 0; 
+}
+
+.eje6 li {
+  padding: 0.5rem 0; 
+}
+
